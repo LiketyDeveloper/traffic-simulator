@@ -56,7 +56,6 @@ class MainWindow(QMainWindow):
             self.grid_scene.add_item(self.object_factory(), grid_pos)
             self.control_panel.restore_object_selection()
 
-    @Slot()
     def on_selection_change(self) -> None:
         objs = self.grid_scene.selectedItems()
         obj = objs[0] if objs else None
@@ -67,15 +66,12 @@ class MainWindow(QMainWindow):
         self.properties_panel.set_object(obj)
 
     def save(self):
-        path, _ = QFileDialog.getSaveFileName(
-            self, "Сохранить", "", "JSON (*.json)"
-        )
+        path, _ = QFileDialog.getSaveFileName(self, "Сохранить", "", "JSON (*.json)")
 
         if path:
             if not path.endswith(".json"):
                 path += ".json"
             save_scene(self.grid_scene, path)
-
 
     def load(self):
         path, _ = QFileDialog.getOpenFileName(self, "", "Загрузить", "JSON (*.json)")

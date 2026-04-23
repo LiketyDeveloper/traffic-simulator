@@ -11,6 +11,15 @@ if TYPE_CHECKING:
     from src.grid import GridScene
 
 
+class ZValues:
+    Road = 0
+    Crossing = 5
+    Pedestrian = 10
+    Car = 15
+    Sign = 20
+    TrafficLight = 25
+
+
 class GridObject(QGraphicsPixmapItem):
     def __init__(self, movable: bool = False):
         super().__init__()
@@ -58,6 +67,7 @@ class Car(GridObject):
         super().__init__(movable=True)
 
         self.direction = direction
+        self.setZValue(ZValues.Car)
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"C{self.direction}"))
@@ -84,6 +94,7 @@ class Road(GridObject):
         super().__init__(movable=False)
 
         self.direction: Direction = direction
+        self.setZValue(ZValues.Road)
 
     def get_pixmap(self) -> QPixmap:
         pm = QPixmap(get_media_path(f"Rvertical"))
@@ -102,6 +113,8 @@ class Crossroad(GridObject):
     def __init__(self) -> None:
         super().__init__(movable=False)
 
+        self.setZValue(ZValues.Road)
+
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"Rcrossroads"))
 
@@ -117,6 +130,7 @@ class TrafficLight(GridObject):
         super().__init__(movable=False)
 
         self.state: TrafficLightState = state
+        self.setZValue(ZValues.TrafficLight)
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"TL{self.state}"))
@@ -126,8 +140,10 @@ class Pedestrian(GridObject):
     def __init__(self) -> None:
         super().__init__(movable=False)
 
+        self.setZValue(ZValues.Pedestrian)
+
     def get_pixmap(self) -> QPixmap:
-        return QPixmap(get_media_path(f"Pedestrian"))
+        return QPixmap(get_media_path(f"Pedestrain"))
 
 
 class Orientation(StrEnum):
@@ -140,6 +156,7 @@ class Crossing(GridObject):
         super().__init__(movable=False)
 
         self.orientation = orientation
+        self.setZValue(ZValues.Crossing)
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"Z{self.orientation}"))
@@ -164,6 +181,7 @@ class Sign(GridObject):
         super().__init__(movable=False)
 
         self.sign_type = sign_type
+        self.setZValue(ZValues.Sign)
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"{self.sign_type}"))
