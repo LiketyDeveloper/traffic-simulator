@@ -18,7 +18,6 @@ class GridView(QGraphicsView):
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
     def scene(self) -> GridScene:
-        print(super().scene())
         return super().scene()  # type: ignore
 
     def mousePressEvent(self, event):

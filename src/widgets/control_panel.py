@@ -36,10 +36,14 @@ class ControlPanel(QDockWidget):
             ("Знак", Sign),
         ]
 
-        self._build_ui()
+        self.build_ui()
 
-    def _build_ui(self) -> None:
+    def restore_object_selection(self):
+        self.combo.setCurrentIndex(0)
+
+    def build_ui(self) -> None:
         container = QWidget()
+        self.setWidget(container)
 
         layout = QVBoxLayout(container)
         layout.setContentsMargins(8, 8, 8, 8)
@@ -56,8 +60,6 @@ class ControlPanel(QDockWidget):
 
         layout.addWidget(self.combo)
         layout.addStretch()
-
-        self.setWidget(container)
 
     @Slot(int)
     def _on_selection_changed(self, index: int) -> None:

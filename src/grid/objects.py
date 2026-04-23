@@ -70,9 +70,7 @@ class Road(GridObject):
 
     def get_pixmap(self) -> QPixmap:
         pm = QPixmap(get_media_path(f"Rvertical"))
-        pm.transformed(QTransform().rotate(DIR2ROT.get(self.direction, 0)))
-
-        return pm
+        return pm.transformed(QTransform().rotate(DIR2ROT.get(self.direction, 0)))
 
 
 class Crossroad(GridObject):

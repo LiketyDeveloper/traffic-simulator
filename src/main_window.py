@@ -1,10 +1,10 @@
-from typing import Callable
 from PySide6.QtCore import QPoint, Slot
 from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QApplication, QMainWindow
 
-from .grid import GridView, GridScene, Car
-from .widgets import ControlPanel, GridObjectFactory
+
+from .grid import GridView, GridScene, GridObject
+from .widgets import ControlPanel, GridObjectFactory, PropertiesPanel
 
 
 class MainWindow(QMainWindow):
@@ -32,6 +32,10 @@ class MainWindow(QMainWindow):
         self.control_panel.factory_selected.connect(self.on_factory_selected)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.control_panel)
 
+        self.properties_panel = PropertiesPanel(self.grid_scene, self)
+        self.grid_scene.selectionChanged.connect(self.on_selection_change)
+        self.addDockWidget(Qt.DockWidgetArea.RightDockWidgetArea, self.properties_panel)
+
         self.setCentralWidget(self.grid_view)
 
     @Slot(object)
@@ -42,3 +46,14 @@ class MainWindow(QMainWindow):
     def on_grid_view_click(self, grid_pos: QPoint) -> None:
         if self.object_factory:
             self.grid_scene.add_item(self.object_factory(), grid_pos)
+            self.control_panel.restore_object_selection()
+
+    @Slot()
+    def on_selection_change(self) -> None:
+        objs = self.grid_scene.selectedItems()
+        obj = objs[0] if objs else None
+
+        if not isinstance(obj, GridObject):
+            obj = None
+
+        self.properties_panel.set_object(obj)
