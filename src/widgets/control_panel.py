@@ -2,7 +2,16 @@ from typing import Callable
 from PySide6.QtCore import Qt, Signal, Slot
 from PySide6.QtWidgets import QComboBox, QDockWidget, QVBoxLayout, QWidget
 
-from src.grid import Car, GridObject, Road, Crossroad, TrafficLight, Pedestrian, Crossing, Sign
+from src.grid import (
+    Car,
+    GridObject,
+    Road,
+    Crossroad,
+    TrafficLight,
+    Pedestrian,
+    Crossing,
+    Sign,
+)
 
 type GridObjectFactory = Callable[[], GridObject]
 
@@ -24,7 +33,7 @@ class ControlPanel(QDockWidget):
             ("Светофор", TrafficLight),
             ("Пешеход", Pedestrian),
             ("Пешеходный переход", Crossing),
-            ("Знак", Sign)
+            ("Знак", Sign),
         ]
 
         self._build_ui()
