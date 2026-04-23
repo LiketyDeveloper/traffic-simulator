@@ -6,6 +6,48 @@ from PySide6.QtWidgets import QGraphicsScene
 from .objects import GridObject
 
 
+class Grid[T]:
+    def __init__(self, size: int) -> None:
+        self.offset = QPoint(size // 2, size // 2)
+        self.grid: list[list[list[T]]] = [
+            [[] for _ in range(size)] for _ in range(size)
+        ]
+
+    def get_at(self, pos: QPoint) -> list[T]:
+        x, y = self._to_index(pos)
+        return self.grid[y][x]
+
+    def append_to(self, pos: QPoint, obj: T) -> None:
+        self.get_at(pos).append(obj)
+
+    def remove_at(self, pos: QPoint, obj: T) -> None:
+        try:
+            self.get_at(pos).remove(obj)
+        except ValueError:
+            pass
+
+    def find_near(
+        self,
+        pos: QPoint,
+        distance: int = 3,
+    ) -> list[T]:
+        cx, cy = self._to_index(pos)
+        size = len(self.grid)
+
+        results: list[T] = []
+
+        for y in range(max(0, cy - distance), min(size, cy + distance + 1)):
+            for x in range(max(0, cx - distance), min(size, cx + distance + 1)):
+                results.extend(self.grid[y][x])
+
+        return results
+
+    def _to_index(self, pos: QPoint) -> tuple[int, int]:
+        x = pos.x() + self.offset.x()
+        y = pos.y() + self.offset.y()
+        return x, y
+
+
 class GridScene(QGraphicsScene):
     def __init__(
         self,
@@ -24,27 +66,28 @@ class GridScene(QGraphicsScene):
 
         size = self.grid_size * self.cell_size
 
+        self.grid: Grid[GridObject] = Grid(self.grid_size)
+
         self.setSceneRect(QRectF(-size / 2, -size / 2, size, size))
 
-    def pos_to_cell(self, scene_pos: QPointF) -> QPoint:
+    def pos_to_cell(self, scene_pos: QPoint | QPointF) -> QPoint:
         return QPoint(
             math.floor(scene_pos.x() / self.cell_size),
             math.floor(scene_pos.y() / self.cell_size),
         )
 
-    def snap_to_cell(self, scene_pos: QPointF):
-        return QPointF(
-            round(scene_pos.x() / self.cell_size) * self.cell_size,
-            round(scene_pos.y() / self.cell_size) * self.cell_size,
+    def cell_to_pos(self, cell: QPoint) -> QPoint:
+        return QPoint(
+            cell.x() * self.cell_size,
+            cell.y() * self.cell_size,
         )
 
     def add_item(self, item: GridObject, grid_pos: QPoint) -> None:
         super().addItem(item)
 
-        x = grid_pos.x() * self.cell_size
-        y = grid_pos.y() * self.cell_size
+        pos = grid_pos * self.cell_size
 
-        item.setPos(x, y)
+        item.setPos(pos)
         item.refresh()
 
     def drawBackground(self, painter: QPainter, rect: QRectF) -> None:
@@ -57,14 +100,11 @@ class GridScene(QGraphicsScene):
         top = int(rect.top())
         bottom = int(rect.bottom())
 
-        # Align to grid
         first_left = left - (left % self.cell_size)
         first_top = top - (top % self.cell_size)
 
-        # Vertical lines
         for x in range(first_left, right, self.cell_size):
             painter.drawLine(x, top, x, bottom)
 
-        # Horizontal lines
         for y in range(first_top, bottom, self.cell_size):
             painter.drawLine(left, y, right, y)

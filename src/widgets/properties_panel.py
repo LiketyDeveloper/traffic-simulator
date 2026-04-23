@@ -7,7 +7,6 @@ from PySide6.QtWidgets import (
     QPushButton,
     QVBoxLayout,
     QWidget,
-    QLineEdit,
 )
 
 from src.grid import (
@@ -159,5 +158,5 @@ class PropertiesPanel(QDockWidget):
 
     def delete_object(self):
         if self._selected_object:
-            self._selected_object.scene().removeItem(self._selected_object)
+            self._selected_object.scene.removeItem(self._selected_object)
         self.update_props()

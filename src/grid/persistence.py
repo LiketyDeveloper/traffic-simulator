@@ -48,15 +48,25 @@ def save_scene(scene: GridScene, path: str) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2)
 
-
+LOAD_PRIORITY: dict[str, int] = {
+    "Road": 0,
+    "Crossroad": 0,
+    "Crossing": 1,
+    "TrafficLight": 2,
+    "Sign": 3,
+    "Pedestrian": 4,
+    "Car": 5,
+}
 def load_scene(scene: GridScene, path: str) -> None:
     with open(path, "r", encoding="utf-8") as f:
         items = json.load(f)
 
     scene.clear()
 
+    items.sort(key=lambda i: LOAD_PRIORITY.get(i["type"], 100))
+
     for item in items:
         cls = CLASS_MAP[item["type"]]
-        obj = cls.deserialize(item['data'])
+        obj = cls.deserialize(item["data"])
 
         scene.add_item(obj, QPoint(item["x"], item["y"]))
