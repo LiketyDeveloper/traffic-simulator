@@ -21,7 +21,7 @@ class ZValues:
 
 
 class GridObject(QGraphicsPixmapItem):
-    def __init__(self, movable: bool = False):
+    def __init__(self, movable: bool = False, persistent: bool = True):
         super().__init__()
 
         flags = (
@@ -32,6 +32,8 @@ class GridObject(QGraphicsPixmapItem):
             flags |= QGraphicsItem.GraphicsItemFlag.ItemIsMovable
 
         self.setFlags(flags)
+
+        self.persistent = persistent
 
     def itemChange(self, change, value):
         if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
@@ -64,7 +66,7 @@ class Direction(StrEnum):
 
 class Car(GridObject):
     def __init__(self, direction: Direction = Direction.N) -> None:
-        super().__init__(movable=True)
+        super().__init__(movable=True, persistent=False)
 
         self.direction = direction
         self.setZValue(ZValues.Car)
