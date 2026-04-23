@@ -14,3 +14,4 @@ from .objects import (
     TrafficLightState,
     SignType,
 )
+from .persistence import load_scene, save_scene

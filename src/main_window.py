@@ -1,9 +1,9 @@
 from PySide6.QtCore import QPoint, Slot
 from PySide6.QtGui import Qt
-from PySide6.QtWidgets import QApplication, QMainWindow
+from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow
 
 
-from .grid import GridView, GridScene, GridObject
+from .grid import GridView, GridScene, GridObject, save_scene, load_scene
 from .widgets import ControlPanel, GridObjectFactory, PropertiesPanel
 
 
@@ -21,6 +21,14 @@ class MainWindow(QMainWindow):
     def setup_window(self) -> None:
         self.setWindowTitle("Traffic Simulator")
         self.resize(1100, 700)
+
+        menu = self.menuBar().addMenu("Файл")
+
+        save_action = menu.addAction("Сохранить")
+        load_action = menu.addAction("Загрузить")
+
+        save_action.triggered.connect(self.save)
+        load_action.triggered.connect(self.load)
 
     def setup_layout(self) -> None:
         self.grid_scene = GridScene()
@@ -57,3 +65,19 @@ class MainWindow(QMainWindow):
             obj = None
 
         self.properties_panel.set_object(obj)
+
+    def save(self):
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Сохранить", "", "JSON (*.json)"
+        )
+
+        if path:
+            if not path.endswith(".json"):
+                path += ".json"
+            save_scene(self.grid_scene, path)
+
+
+    def load(self):
+        path, _ = QFileDialog.getOpenFileName(self, "", "Загрузить", "JSON (*.json)")
+        if path:
+            load_scene(self.grid_scene, path)

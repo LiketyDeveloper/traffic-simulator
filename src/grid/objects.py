@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from enum import StrEnum
 from typing import TYPE_CHECKING
 from PySide6.QtGui import QPixmap, QTransform
@@ -36,6 +38,13 @@ class GridObject(QGraphicsPixmapItem):
     def get_pixmap(self) -> QPixmap:
         raise NotImplementedError()
 
+    def serialize(self) -> dict:
+        return {}
+
+    @classmethod
+    def deserialize(cls, data: dict) -> GridObject:
+        return cls(**data)
+
 
 class Direction(StrEnum):
     N = "vertical"
@@ -52,6 +61,14 @@ class Car(GridObject):
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"C{self.direction}"))
+
+    def serialize(self) -> dict:
+        return {"direction": self.direction.name}
+
+    @classmethod
+    def deserialize(cls, data: dict) -> Car:
+        direction = Direction[data["direction"]]
+        return cls(direction)
 
 
 DIR2ROT: dict[Direction, int] = {
@@ -71,6 +88,14 @@ class Road(GridObject):
     def get_pixmap(self) -> QPixmap:
         pm = QPixmap(get_media_path(f"Rvertical"))
         return pm.transformed(QTransform().rotate(DIR2ROT.get(self.direction, 0)))
+
+    def serialize(self) -> dict:
+        return {"direction": self.direction.name}
+
+    @classmethod
+    def deserialize(cls, data: dict) -> Road:
+        direction = Direction[data["direction"]]
+        return cls(direction)
 
 
 class Crossroad(GridObject):
@@ -111,15 +136,21 @@ class Orientation(StrEnum):
 
 
 class Crossing(GridObject):
-    def __init__(
-        self, orientation: Orientation = Orientation.VERTICAL
-    ) -> None:
+    def __init__(self, orientation: Orientation = Orientation.VERTICAL) -> None:
         super().__init__(movable=False)
 
         self.orientation = orientation
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"Z{self.orientation}"))
+
+    def serialize(self) -> dict:
+        return {"orientation": self.orientation.name}
+
+    @classmethod
+    def deserialize(cls, data: dict) -> Crossing:
+        orientation = Orientation[data["orientation"]]
+        return cls(orientation)
 
 
 class SignType(StrEnum):
@@ -136,3 +167,11 @@ class Sign(GridObject):
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"{self.sign_type}"))
+
+    def serialize(self) -> dict:
+        return {"sign_type": self.sign_type.name}
+
+    @classmethod
+    def deserialize(cls, data: dict) -> Sign:
+        sign_type = SignType[data["sign_type"]]
+        return cls(sign_type)
