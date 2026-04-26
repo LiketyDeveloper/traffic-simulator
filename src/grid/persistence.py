@@ -28,14 +28,13 @@ CLASS_MAP = {
 
 
 def serialize_item(scene: GridScene, item: GridObject) -> dict:
-    cell = scene.pos_to_cell(item.pos())
+    cell = scene.scene_pos_to_cell(item.pos())
     return {
         "type": item.__class__.__name__,
         "x": cell.x(),
         "y": cell.y(),
-        "data": item.serialize()
+        "data": item.serialize(),
     }
-
 
 
 def save_scene(scene: GridScene, path: str) -> None:
@@ -48,6 +47,7 @@ def save_scene(scene: GridScene, path: str) -> None:
     with open(path, "w", encoding="utf-8") as f:
         json.dump(items, f, indent=2)
 
+
 LOAD_PRIORITY: dict[str, int] = {
     "Road": 0,
     "Crossroad": 0,
@@ -57,6 +57,8 @@ LOAD_PRIORITY: dict[str, int] = {
     "Pedestrian": 4,
     "Car": 5,
 }
+
+
 def load_scene(scene: GridScene, path: str) -> None:
     with open(path, "r", encoding="utf-8") as f:
         items = json.load(f)

@@ -9,9 +9,6 @@ from .objects import (
     Pedestrian,
     Crossing,
     Sign,
-    Direction,
-    Orientation,
-    TrafficLightState,
-    SignType,
 )
+from .defs import Direction, Orientation, TLState, SignType
 from .persistence import load_scene, save_scene

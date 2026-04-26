@@ -26,6 +26,8 @@ class ControlPanel(QDockWidget):
             Qt.DockWidgetArea.LeftDockWidgetArea | Qt.DockWidgetArea.RightDockWidgetArea
         )
 
+        self.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)
+
         self.placeable_objects: list[tuple[str, Callable[[], GridObject]]] = [
             ("Автомобиль", Car),
             ("Дорога", Road),

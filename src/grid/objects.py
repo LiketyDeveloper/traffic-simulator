@@ -1,16 +1,16 @@
 from __future__ import annotations
 
-from enum import StrEnum
 from typing import TYPE_CHECKING
+
 from PySide6.QtCore import QPoint, QPointF
 from PySide6.QtGui import QPixmap, QTransform
 from PySide6.QtWidgets import QGraphicsItem, QGraphicsPixmapItem
 
 from src.utils import find_instance, get_media_path
+from .defs import DIR2OFFSET, Direction, Orientation, TLState, SignType, DIR2ROT
 
 if TYPE_CHECKING:
-    from .scene import GridScene
-
+    from .scene import GridScene, SpatialGrid
 
 class ZValues:
     Road = 0
@@ -24,7 +24,7 @@ class ZValues:
 class GridObject(QGraphicsPixmapItem):
     def __init__(
         self,
-        persistent: bool = True,
+        is_persistent: bool = True,
     ):
         super().__init__()
 
@@ -36,7 +36,7 @@ class GridObject(QGraphicsPixmapItem):
 
         self.setFlags(flags)
 
-        self.persistent = persistent
+        self.is_persistent = is_persistent
         self.cell: QPoint | None = None
 
     def itemChange(self, change, value):
@@ -45,33 +45,37 @@ class GridObject(QGraphicsPixmapItem):
         return super().itemChange(change, value)
 
     def process_position_change(self, value: QPoint | QPointF) -> QPoint | QPointF:
-        new_cell = self.scene.pos_to_cell(value)
-
-        if self.scene is None:
+        if self.grid_scene is None:
             return value
+
+        new_cell = self.grid_scene.scene_pos_to_cell(value)
 
         if self.cell == new_cell:
             return self.pos()
 
         if not self.validate_placement(new_cell):
             if self.cell is None:
-                self.scene.removeItem(self)
+                self.grid_scene.removeItem(self)
             return self.pos()
 
         if self.cell is not None:
-            self.scene.grid.remove_at(self.cell, self)
+            self.spatial_grid.remove_at(self.cell, self)
 
-        self.scene.grid.append_to(new_cell, self)
+        self.spatial_grid.append_to(new_cell, self)
         self.cell = new_cell
 
-        return self.scene.cell_to_pos(self.cell)
+        return self.grid_scene.cell_to_scene_pos(self.cell)
 
     def validate_placement(self, new_cell: QPoint) -> bool:
         return True
 
     @property
-    def scene(self) -> "GridScene":
+    def grid_scene(self) -> "GridScene":
         return super().scene()  # type: ignore
+
+    @property
+    def spatial_grid(self) -> "SpatialGrid":
+        return self.grid_scene.grid
 
     def refresh(self) -> None:
         self.setPixmap(self.get_pixmap())
@@ -87,16 +91,9 @@ class GridObject(QGraphicsPixmapItem):
         return cls(**data)
 
 
-class Direction(StrEnum):
-    N = "vertical"
-    S = "bottom"
-    W = "left"
-    E = "right"
-
-
 class Car(GridObject):
     def __init__(self, direction: Direction = Direction.N) -> None:
-        super().__init__(persistent=False)
+        super().__init__(is_persistent=False)
 
         self.direction = direction
         self.setZValue(ZValues.Car)
@@ -113,16 +110,10 @@ class Car(GridObject):
         return cls(direction)
 
     def validate_placement(self, new_cell: QPoint) -> bool:
-        road = find_instance(of=Road, in_=self.scene.grid.get_at(new_cell))
-        return bool(road)
-
-
-DIR2ROT: dict[Direction, int] = {
-    Direction.N: 0,
-    Direction.S: 180,
-    Direction.W: -90,
-    Direction.E: 90,
-}
+        is_on_road = bool(
+            find_instance(of=(Road, Crossroad), in_=self.spatial_grid.get_at(new_cell))
+        )
+        return is_on_road
 
 
 class Road(GridObject):
@@ -135,6 +126,18 @@ class Road(GridObject):
     def get_pixmap(self) -> QPixmap:
         pm = QPixmap(get_media_path(f"Rvertical"))
         return pm.transformed(QTransform().rotate(DIR2ROT.get(self.direction, 0)))
+
+    def validate_placement(self, new_cell: QPoint) -> bool:
+        is_on_road = bool(
+            find_instance(of=(Road, Crossroad), in_=self.spatial_grid.get_at(new_cell))
+        )
+        return not is_on_road
+
+    def get_next_cell(self) -> QPoint | None:
+        if not self.cell:
+            return None
+
+        return self.cell + DIR2OFFSET[self.direction]
 
     def serialize(self) -> dict:
         return {"direction": self.direction.name}
@@ -154,29 +157,35 @@ class Crossroad(GridObject):
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"Rcrossroads"))
 
-
-class TrafficLightState(StrEnum):
-    RED = "red"
-    YELLOW = "yellow"
-    GREEN = "green"
+    def validate_placement(self, new_cell: QPoint) -> bool:
+        is_on_road = bool(
+            find_instance(of=(Road, Crossroad), in_=self.spatial_grid.get_at(new_cell))
+        )
+        return not is_on_road
 
 
 class TrafficLight(GridObject):
-    def __init__(self, state: TrafficLightState = TrafficLightState.RED) -> None:
+    def __init__(self, state: TLState = TLState.RED) -> None:
         super().__init__()
 
-        self.state: TrafficLightState = state
+        self.state: TLState = state
         self.setZValue(ZValues.TrafficLight)
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"TL{self.state}"))
 
     def validate_placement(self, new_cell: QPoint) -> bool:
-        near_crossroad = find_instance(
-            of=Crossroad, in_=self.scene.grid.find_near(new_cell, 1)
+        road = find_instance(of=Road, in_=self.spatial_grid.get_at(new_cell))
+        if not road:
+            return False
+
+        road_next_cell = road.get_next_cell()
+        if not road_next_cell:
+            return False
+
+        return bool(
+            find_instance(of=Crossroad, in_=self.spatial_grid.get_at(road_next_cell))
         )
-        on_road = find_instance(of=Road, in_=self.scene.grid.get_at(new_cell))
-        return bool(near_crossroad) and bool(on_road)
 
 
 class Pedestrian(GridObject):
@@ -189,14 +198,11 @@ class Pedestrian(GridObject):
         return QPixmap(get_media_path(f"Pedestrain"))
 
     def validate_placement(self, new_cell: QPoint) -> bool:
-        near_road = find_instance(of=Road, in_=self.scene.grid.find_near(new_cell, 1))
-        on_road = find_instance(of=Road, in_=self.scene.grid.get_at(new_cell))
-        return bool(near_road) and not bool(on_road)
-
-
-class Orientation(StrEnum):
-    VERTICAL = "vertical"
-    HORIZONTAL = "horizontal"
+        near_crossing = bool(
+            find_instance(of=Crossing, in_=self.spatial_grid.get_neighbors(new_cell))
+        )
+        on_road = bool(find_instance(of=Road, in_=self.spatial_grid.get_at(new_cell)))
+        return near_crossing and not on_road
 
 
 class Crossing(GridObject):
@@ -218,14 +224,8 @@ class Crossing(GridObject):
         return cls(orientation)
 
     def validate_placement(self, new_cell: QPoint) -> bool:
-        road = find_instance(of=Road, in_=self.scene.grid.get_at(new_cell))
-        return bool(road)
-
-
-class SignType(StrEnum):
-    BLOCK = "Block"
-    STOP = "Stop"
-    START = "Start"
+        on_road = bool(find_instance(of=Road, in_=self.spatial_grid.get_at(new_cell)))
+        return on_road
 
 
 class Sign(GridObject):
@@ -239,8 +239,10 @@ class Sign(GridObject):
         return QPixmap(get_media_path(f"{self.sign_type}"))
 
     def validate_placement(self, new_cell: QPoint) -> bool:
-        road = find_instance(of=Road, in_=self.scene.grid.get_at(new_cell))
-        return bool(road)
+        on_road = bool(
+            find_instance(of=(Road, Crossroad), in_=self.spatial_grid.get_at(new_cell))
+        )
+        return on_road
 
     def serialize(self) -> dict:
         return {"sign_type": self.sign_type.name}

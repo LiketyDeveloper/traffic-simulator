@@ -31,13 +31,13 @@ class GridView(QGraphicsView):
         if event.button() == Qt.MouseButton.LeftButton:
             scene_pos = self.mapToScene(event.pos())
 
-            self.on_click.emit(self.scene().pos_to_cell(scene_pos))
+            self.on_click.emit(self.scene().scene_pos_to_cell(scene_pos))
 
         super().mousePressEvent(event)
 
     def mouseMoveEvent(self, event):
         scene_pos = self.mapToScene(event.pos())
-        cell = self.scene().pos_to_cell(scene_pos)
+        cell = self.scene().scene_pos_to_cell(scene_pos)
 
         self.cursor_label.setText(f"{cell.x()}, {cell.y()}")
         self.cursor_label.adjustSize()

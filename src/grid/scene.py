@@ -1,12 +1,14 @@
 import math
+
 from PySide6.QtCore import QObject, QPoint, QPointF, QRectF
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene
 
+from .defs import DIR2OFFSET
 from .objects import GridObject
 
 
-class Grid[T]:
+class SpatialGrid[T]:
     def __init__(self, size: int) -> None:
         self.offset = QPoint(size // 2, size // 2)
         self.grid: list[list[list[T]]] = [
@@ -26,21 +28,12 @@ class Grid[T]:
         except ValueError:
             pass
 
-    def find_near(
-        self,
-        pos: QPoint,
-        distance: int = 3,
-    ) -> list[T]:
-        cx, cy = self._to_index(pos)
-        size = len(self.grid)
+    def get_neighbors(self, pos: QPoint) -> list[T]:
+        neighbors = []
+        for _, offset in DIR2OFFSET.items():
+            neighbors.extend(self.get_at(pos + offset))
 
-        results: list[T] = []
-
-        for y in range(max(0, cy - distance), min(size, cy + distance + 1)):
-            for x in range(max(0, cx - distance), min(size, cx + distance + 1)):
-                results.extend(self.grid[y][x])
-
-        return results
+        return neighbors
 
     def _to_index(self, pos: QPoint) -> tuple[int, int]:
         x = pos.x() + self.offset.x()
@@ -52,31 +45,31 @@ class GridScene(QGraphicsScene):
     def __init__(
         self,
         parent: QObject | None = None,
-        clear_color: QColor = QColor("#ffffff"),
+        background_color: QColor = QColor("#ffffff"),
         grid_color: QColor = QColor("#e0e0e0"),
         cell_size: int = 35,
-        grid_size: int = 50,
+        grid_dim: int = 50,
     ) -> None:
         super().__init__(parent)
 
-        self.clear_color = clear_color
+        self.background_color = background_color
         self.grid_color = grid_color
         self.cell_size = cell_size
-        self.grid_size = grid_size
+        self.grid_dim = grid_dim
 
-        size = self.grid_size * self.cell_size
+        size = self.grid_dim * self.cell_size
 
-        self.grid: Grid[GridObject] = Grid(self.grid_size)
+        self.grid: SpatialGrid[GridObject] = SpatialGrid(self.grid_dim)
 
         self.setSceneRect(QRectF(-size / 2, -size / 2, size, size))
 
-    def pos_to_cell(self, scene_pos: QPoint | QPointF) -> QPoint:
+    def scene_pos_to_cell(self, scene_pos: QPoint | QPointF) -> QPoint:
         return QPoint(
             math.floor(scene_pos.x() / self.cell_size),
             math.floor(scene_pos.y() / self.cell_size),
         )
 
-    def cell_to_pos(self, cell: QPoint) -> QPoint:
+    def cell_to_scene_pos(self, cell: QPoint) -> QPoint:
         return QPoint(
             cell.x() * self.cell_size,
             cell.y() * self.cell_size,
@@ -91,7 +84,7 @@ class GridScene(QGraphicsScene):
         item.refresh()
 
     def drawBackground(self, painter: QPainter, rect: QRectF) -> None:
-        painter.fillRect(rect, self.clear_color)
+        painter.fillRect(rect, self.background_color)
 
         painter.setPen(QPen(self.grid_color, 0.4))
 

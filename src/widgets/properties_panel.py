@@ -18,7 +18,7 @@ from src.grid import (
     Crossing,
     Sign,
     Direction,
-    TrafficLightState,
+    TLState,
     Orientation,
     SignType,
 )
@@ -41,6 +41,7 @@ class PropertiesPanel(QDockWidget):
         self.setAllowedAreas(
             Qt.DockWidgetArea.LeftDockWidgetArea | Qt.DockWidgetArea.RightDockWidgetArea
         )
+        self.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)
 
         self._selected_object = None
         self.build_ui()
@@ -108,7 +109,7 @@ class PropertiesPanel(QDockWidget):
                 (
                     "Состояние",
                     "state",
-                    enum_editor(TrafficLightState),
+                    enum_editor(TLState),
                 ),
             ]
 
@@ -158,5 +159,5 @@ class PropertiesPanel(QDockWidget):
 
     def delete_object(self):
         if self._selected_object:
-            self._selected_object.scene.removeItem(self._selected_object)
+            self._selected_object.grid_scene.removeItem(self._selected_object)
         self.update_props()
