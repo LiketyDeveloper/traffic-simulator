@@ -1,16 +1,18 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+import uuid
 
 from PySide6.QtCore import QPoint, QPointF
 from PySide6.QtGui import QPixmap, QTransform
 from PySide6.QtWidgets import QGraphicsItem, QGraphicsPixmapItem
 
 from src.utils import find_instance, get_media_path
-from .defs import DIR2OFFSET, Direction, Orientation, TLState, SignType, DIR2ROT
+from .defs import DIR2OFFSET, Direction, Orientation, TLMode, TLState, SignType, DIR2ROT
 
 if TYPE_CHECKING:
     from .scene import GridScene, SpatialGrid
+
 
 class ZValues:
     Road = 0
@@ -19,6 +21,20 @@ class ZValues:
     Car = 15
     Sign = 20
     TrafficLight = 25
+
+
+def sprite_prop():
+    private = f"__{uuid.uuid4()}"
+
+    def getter(self):
+        return getattr(self, private)
+
+    def setter(self, value):
+        setattr(self, private, value)
+        if self.scene() is not None:
+            self.refresh_sprite()
+
+    return property(getter, setter)  # type: ignore
 
 
 class GridObject(QGraphicsPixmapItem):
@@ -38,6 +54,14 @@ class GridObject(QGraphicsPixmapItem):
 
         self.is_persistent = is_persistent
         self.cell: QPoint | None = None
+
+    @property
+    def grid_scene(self) -> "GridScene":
+        return super().scene()  # type: ignore
+
+    @property
+    def spatial_grid(self) -> "SpatialGrid":
+        return self.grid_scene.grid
 
     def itemChange(self, change, value):
         if change == QGraphicsItem.GraphicsItemChange.ItemPositionChange:
@@ -69,16 +93,11 @@ class GridObject(QGraphicsPixmapItem):
     def validate_placement(self, new_cell: QPoint) -> bool:
         return True
 
-    @property
-    def grid_scene(self) -> "GridScene":
-        return super().scene()  # type: ignore
-
-    @property
-    def spatial_grid(self) -> "SpatialGrid":
-        return self.grid_scene.grid
-
-    def refresh(self) -> None:
+    def refresh_sprite(self) -> None:
         self.setPixmap(self.get_pixmap())
+
+    def tick(self, dt: float) -> None:
+        pass
 
     def get_pixmap(self) -> QPixmap:
         raise NotImplementedError()
@@ -92,6 +111,8 @@ class GridObject(QGraphicsPixmapItem):
 
 
 class Car(GridObject):
+    direction = sprite_prop()
+
     def __init__(self, direction: Direction = Direction.N) -> None:
         super().__init__(is_persistent=False)
 
@@ -117,10 +138,12 @@ class Car(GridObject):
 
 
 class Road(GridObject):
+    direction = sprite_prop()
+
     def __init__(self, direction: Direction = Direction.N) -> None:
         super().__init__()
 
-        self.direction: Direction = direction
+        self.direction = direction
         self.setZValue(ZValues.Road)
 
     def get_pixmap(self) -> QPixmap:
@@ -165,14 +188,46 @@ class Crossroad(GridObject):
 
 
 class TrafficLight(GridObject):
+    STATE_DURATION = 5.0
+
+    state = sprite_prop()
+
     def __init__(self, state: TLState = TLState.RED) -> None:
         super().__init__()
 
-        self.state: TLState = state
+        self.state = state
+        self.mode: TLMode = TLMode.TIME
+
         self.setZValue(ZValues.TrafficLight)
+
+        self.elapsed: float = 0.0
 
     def get_pixmap(self) -> QPixmap:
         return QPixmap(get_media_path(f"TL{self.state}"))
+
+    def _flip(self) -> None:
+        self.state = TLState.RED if self.state == TLState.GREEN else TLState.GREEN
+        self.elapsed = 0.0
+
+    def tick(self, dt: float) -> None:
+        if self.mode == TLMode.TIME:
+            self._tick_time(dt)
+        elif self.mode == TLMode.TRANSPORT:
+            self._tick_transport()
+
+    def _tick_time(self, dt: float) -> None:
+        self.elapsed += dt
+        if self.elapsed >= self.STATE_DURATION:
+            self._flip()
+
+    def _tick_transport(self) -> None:
+        if self.cell is None:
+            return
+        neighbors = self.spatial_grid.get_neighbors(self.cell)
+        target = TLState.GREEN if find_instance(of=Car, in_=neighbors) else TLState.RED
+        if self.state != target:
+            self.state = target
+            self.elapsed = 0.0
 
     def validate_placement(self, new_cell: QPoint) -> bool:
         road = find_instance(of=Road, in_=self.spatial_grid.get_at(new_cell))
@@ -206,6 +261,8 @@ class Pedestrian(GridObject):
 
 
 class Crossing(GridObject):
+    orientation = sprite_prop()
+
     def __init__(self, orientation: Orientation = Orientation.VERTICAL) -> None:
         super().__init__()
 
@@ -229,6 +286,8 @@ class Crossing(GridObject):
 
 
 class Sign(GridObject):
+    sign_type = sprite_prop()
+
     def __init__(self, sign_type: SignType = SignType.BLOCK) -> None:
         super().__init__()
 

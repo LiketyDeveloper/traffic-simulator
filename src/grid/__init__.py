@@ -10,5 +10,5 @@ from .objects import (
     Crossing,
     Sign,
 )
-from .defs import Direction, Orientation, TLState, SignType
+from .defs import Direction, Orientation, TLState, SignType, TLMode
 from .persistence import load_scene, save_scene

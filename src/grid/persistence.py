@@ -41,7 +41,7 @@ def save_scene(scene: GridScene, path: str) -> None:
     items = []
 
     for item in scene.items():
-        if isinstance(item, GridObject) and item.persistent:
+        if isinstance(item, GridObject) and item.is_persistent:
             items.append(serialize_item(scene, item))
 
     with open(path, "w", encoding="utf-8") as f:

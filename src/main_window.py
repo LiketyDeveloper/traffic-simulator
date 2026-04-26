@@ -2,8 +2,7 @@ from PySide6.QtCore import QPoint, Slot
 from PySide6.QtGui import Qt
 from PySide6.QtWidgets import QApplication, QFileDialog, QMainWindow
 
-
-from .grid import GridView, GridScene, GridObject, save_scene, load_scene
+from .grid import GridView, GridScene, GridObject, TrafficLight, TLMode, save_scene, load_scene
 from .widgets import ControlPanel, GridObjectFactory, PropertiesPanel
 
 
@@ -38,6 +37,7 @@ class MainWindow(QMainWindow):
 
         self.control_panel = ControlPanel()
         self.control_panel.factory_selected.connect(self.on_factory_selected)
+        self.control_panel.tl_mode_changed.connect(self.on_tl_mode_changed)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.control_panel)
 
         self.properties_panel = PropertiesPanel(self.grid_scene, self)
@@ -49,6 +49,11 @@ class MainWindow(QMainWindow):
     @Slot(object)
     def on_factory_selected(self, factory: GridObjectFactory) -> None:
         self.object_factory = factory
+
+    @Slot(object)
+    def on_tl_mode_changed(self, tl_mode: TLMode) -> None:
+        for tl in self.grid_scene.get_items(TrafficLight):
+            tl.mode = tl_mode
 
     @Slot(object)
     def on_grid_view_click(self, grid_pos: QPoint) -> None:

@@ -153,7 +153,6 @@ class PropertiesPanel(QDockWidget):
     def make_setter(self, attr):
         def setter(value):
             setattr(self._selected_object, attr, value)
-            self._selected_object.refresh()
 
         return setter
 

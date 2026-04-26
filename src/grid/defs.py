@@ -9,7 +9,6 @@ class Direction(StrEnum):
     W = "left"
     E = "right"
 
-
 class Orientation(StrEnum):
     VERTICAL = "vertical"
     HORIZONTAL = "horizontal"
@@ -19,6 +18,10 @@ class TLState(StrEnum):
     RED = "red"
     YELLOW = "yellow"
     GREEN = "green"
+
+class TLMode(StrEnum):
+    TIME = "time"
+    TRANSPORT = "transport"
 
 
 class SignType(StrEnum):

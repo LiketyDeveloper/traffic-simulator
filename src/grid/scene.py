@@ -1,6 +1,7 @@
 import math
+import time
 
-from PySide6.QtCore import QObject, QPoint, QPointF, QRectF
+from PySide6.QtCore import QObject, QPoint, QPointF, QRectF, QTimer
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene
 
@@ -49,6 +50,7 @@ class GridScene(QGraphicsScene):
         grid_color: QColor = QColor("#e0e0e0"),
         cell_size: int = 35,
         grid_dim: int = 50,
+        tick_ms: int = 50,
     ) -> None:
         super().__init__(parent)
 
@@ -62,6 +64,11 @@ class GridScene(QGraphicsScene):
         self.grid: SpatialGrid[GridObject] = SpatialGrid(self.grid_dim)
 
         self.setSceneRect(QRectF(-size / 2, -size / 2, size, size))
+
+        self.sim_timer = QTimer(self)
+        self.sim_timer.setInterval(tick_ms)
+        self.sim_timer.timeout.connect(self.on_tick)
+        self.sim_timer.start()
 
     def scene_pos_to_cell(self, scene_pos: QPoint | QPointF) -> QPoint:
         return QPoint(
@@ -81,7 +88,7 @@ class GridScene(QGraphicsScene):
         pos = grid_pos * self.cell_size
 
         item.setPos(pos)
-        item.refresh()
+        item.refresh_sprite()
 
     def drawBackground(self, painter: QPainter, rect: QRectF) -> None:
         painter.fillRect(rect, self.background_color)
@@ -101,3 +108,13 @@ class GridScene(QGraphicsScene):
 
         for y in range(first_top, bottom, self.cell_size):
             painter.drawLine(left, y, right, y)
+
+    def on_tick(self) -> None:
+        dt = self.sim_timer.interval() / 1000
+
+        for item in self.items():
+            if isinstance(item, GridObject):
+                item.tick(dt)
+
+    def get_items[T](self, cls: type[T] | list[type[T]]) -> list[T]:
+        return [obj for obj in self.items() if isinstance(obj, cls)] # type: ignore
