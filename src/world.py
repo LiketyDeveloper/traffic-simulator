@@ -1,9 +1,12 @@
+from typing import TYPE_CHECKING
 from PySide6.QtCore import QObject, QPoint, QRectF, Qt, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
 from src.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
 from src.utils import cellToScenePos, scenePosToCell
+
+from src.entities import BaseEntity
 
 
 class World(QGraphicsScene):
@@ -12,28 +15,33 @@ class World(QGraphicsScene):
     def __init__(
         self,
         parent: QObject | None = None,
-        background_color: QColor = QColor("#ffffff"),
-        grid_color: QColor = QColor("#e0e0e0"),
-        tick_ms: int = 50,
+        backgroundColor: QColor = QColor("#ffffff"),
+        gridColor: QColor = QColor("#e0e0e0"),
+        tickMs: int = 50,
     ) -> None:
         super().__init__(parent)
 
-        self.background_color = background_color
-        self.grid_color = grid_color
+        self.backgroundColor = backgroundColor
+        self.gridColor = gridColor
 
         size = GRID_DIM * CELL_SIZE
         self.setSceneRect(QRectF(-size / 2, -size / 2, size, size))
 
-    def get(self, at: QPoint, types: type | tuple[type] = object):
+    def get[T: BaseEntity](
+        self, at: QPoint, types: type[T] | tuple[type[T]] = BaseEntity
+    ) -> list[T]:
         return [
             entity
             for entity in self.items(
-                cellToScenePos(at), Qt.ItemSelectionMode.IntersectsItemBoundingRect
+                cellToScenePos(at) + QPoint(CELL_SIZE // 2, CELL_SIZE // 2),
+                Qt.ItemSelectionMode.IntersectsItemBoundingRect,
             )
-            if isinstance(entity, types)
+            if isinstance(entity, types) and entity.cell == at
         ]
 
-    def get_neighbors(self, at: QPoint, types: type | tuple[type] = object):
+    def getNeighbors[T: BaseEntity](
+        self, at: QPoint, types: type[T] | tuple[type[T]] = BaseEntity
+    ) -> list[T]:
         neighbors = []
         for _, offset in DIR2OFFSET.items():
             neighbors.extend(self.get(at + offset, types))
@@ -47,9 +55,9 @@ class World(QGraphicsScene):
         return super().mousePressEvent(event)
 
     def drawBackground(self, painter: QPainter, rect: QRectF) -> None:
-        painter.fillRect(rect, self.background_color)
+        painter.fillRect(rect, self.backgroundColor)
 
-        painter.setPen(QPen(self.grid_color, 0.4))
+        painter.setPen(QPen(self.gridColor, 0.4))
 
         left = int(rect.left())
         right = int(rect.right())

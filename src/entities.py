@@ -10,7 +10,7 @@ from PySide6.QtWidgets import (
 )
 
 from src.utils import getMediaPath, scenePosToCell, cellToScenePos, snapScenePosToCell
-from src.constants import DIR2ROT, ZIndexes
+from src.constants import DIR2OFFSET, DIR2ROT, ZIndexes
 from src.types import Direction, Orientation, SignType, TLMode, TLState
 
 if TYPE_CHECKING:
@@ -80,6 +80,9 @@ class StraightRoad(Road):
 
         self.setPixmap(pm)
 
+    def getCellOffset(self, offset: int = 1) -> QPoint:
+        return self.cell + DIR2OFFSET[self.direction] * offset
+
 
 class CrossRoad(Road):
     def __init__(self, direction: Direction = Direction.N) -> None:
@@ -133,12 +136,26 @@ class TrafficLight(BaseEntity):
     def _tick_transport(self) -> None:
         pass
 
+    def validatePlacement(self, cell: QPoint, world: "World") -> bool:
+        straightRoads = world.get(cell, StraightRoad)
+        if not straightRoads:
+            return False
+
+        nxtCell = straightRoads[0].getCellOffset(1)
+        crossroadOnNxt = len(world.get(nxtCell, CrossRoad)) > 0
+        return super().validatePlacement(cell, world) and crossroadOnNxt
+
 
 class Pedestrian(BaseEntity):
     def __init__(self) -> None:
         super().__init__(ZIndexes.Pedestrian)
 
         self.setPixmap(QPixmap(getMediaPath(f"Pedestrain")))
+
+    def validatePlacement(self, cell: QPoint, world: "World") -> bool:
+        nextToCrossing = len(world.getNeighbors(cell, Crossing)) > 0
+        onRoad = len(world.get(cell, Road)) > 0
+        return super().validatePlacement(cell, world) and nextToCrossing and not onRoad
 
 
 class Crossing(BaseEntity):
@@ -162,6 +179,10 @@ class Crossing(BaseEntity):
         pm = QPixmap(getMediaPath(self.ORNT2IMG[self.orientation]))
         self.setPixmap(pm)
 
+    def validatePlacement(self, cell: QPoint, world: "World") -> bool:
+        onStraightRoad = len(world.get(cell, StraightRoad)) > 0
+        return super().validatePlacement(cell, world) and onStraightRoad
+
 
 class Sign(BaseEntity):
     TYPE2IMG = {SignType.BLOCK: "Block", SignType.START: "Start", SignType.STOP: "Stop"}
@@ -181,3 +202,7 @@ class Sign(BaseEntity):
 
         pm = QPixmap(getMediaPath(self.TYPE2IMG[self.type]))
         self.setPixmap(pm)
+
+    def validatePlacement(self, cell: QPoint, world: "World") -> bool:
+        onRoad = len(world.get(cell, Road)) > 0
+        return super().validatePlacement(cell, world) and onRoad
