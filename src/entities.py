@@ -1,3 +1,4 @@
+from ast import Or
 from typing import TYPE_CHECKING
 
 from PySide6.QtCore import QPoint
@@ -10,7 +11,7 @@ from PySide6.QtWidgets import (
 
 from src.utils import getMediaPath, scenePosToCell, cellToScenePos, snapScenePosToCell
 from src.constants import DIR2ROT, ZIndexes
-from src.types import Direction, SignType, TLMode, TLState
+from src.types import Direction, Orientation, SignType, TLMode, TLState
 
 if TYPE_CHECKING:
     from world import World
@@ -48,7 +49,6 @@ class BaseEntity(QGraphicsPixmapItem):
     def setCell(self, cell: QPoint) -> None:
         self.cell = cell
 
-        print(cell)
         self.setPos(cellToScenePos(cell))
 
     def validatePlacement(self, cell: QPoint, world: "World") -> bool:
@@ -132,6 +132,35 @@ class TrafficLight(BaseEntity):
 
     def _tick_transport(self) -> None:
         pass
+
+
+class Pedestrian(BaseEntity):
+    def __init__(self) -> None:
+        super().__init__(ZIndexes.Pedestrian)
+
+        self.setPixmap(QPixmap(getMediaPath(f"Pedestrain")))
+
+
+class Crossing(BaseEntity):
+    ORNT2IMG = {
+        Orientation.HORIZONTAL: "Zhorizontal",
+        Orientation.VERTICAL: "Zvertical",
+    }
+
+    def __init__(self, orientation: Orientation = Orientation.VERTICAL) -> None:
+        super().__init__()
+
+        self.orientation = orientation
+
+    @property
+    def orientation(self) -> Orientation:
+        return self._orientation
+
+    @orientation.setter
+    def orientation(self, orientation: Orientation) -> None:
+        self._orientation = orientation
+        pm = QPixmap(getMediaPath(self.ORNT2IMG[self.orientation]))
+        self.setPixmap(pm)
 
 
 class Sign(BaseEntity):

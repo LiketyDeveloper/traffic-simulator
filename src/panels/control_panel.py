@@ -9,7 +9,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.entities import StraightRoad, CrossRoad, TrafficLight, Sign
+from src.entities import Crossing, Pedestrian, StraightRoad, CrossRoad, TrafficLight, Sign
 from src.types import TLMode, EntityFactory
 
 
@@ -27,12 +27,9 @@ class ControlPanel(QDockWidget):
         self.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)
 
         self.placeableObjects: list[tuple[str, EntityFactory]] = [
-            # ("Автомобиль", Car),
-            # # ("Дорога", Road),
-            # # ("Перекресток", Crossroad),
             ("Светофор", TrafficLight),
-            # ("Пешеход", Pedestrian),
-            # ("Пешеходный переход", Crossing),
+            ("Пешеход", Pedestrian),
+            ("Пешеходный переход", Crossing),
             ("Знак", Sign),
             ("Дорога", StraightRoad),
             ("Перекресток", CrossRoad),

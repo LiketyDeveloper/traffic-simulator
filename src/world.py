@@ -2,8 +2,8 @@ from PySide6.QtCore import QObject, QPoint, QRectF, Qt, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
-from .constants import CELL_SIZE, GRID_DIM
-from .utils import cellToScenePos, scenePosToCell
+from src.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
+from src.utils import cellToScenePos, scenePosToCell
 
 
 class World(QGraphicsScene):
@@ -27,9 +27,18 @@ class World(QGraphicsScene):
     def get(self, at: QPoint, types: type | tuple[type] = object):
         return [
             entity
-            for entity in self.items(cellToScenePos(at), Qt.ItemSelectionMode.IntersectsItemBoundingRect)
+            for entity in self.items(
+                cellToScenePos(at), Qt.ItemSelectionMode.IntersectsItemBoundingRect
+            )
             if isinstance(entity, types)
         ]
+
+    def get_neighbors(self, at: QPoint, types: type | tuple[type] = object):
+        neighbors = []
+        for _, offset in DIR2OFFSET.items():
+            neighbors.extend(self.get(at + offset, types))
+
+        return neighbors
 
     def mousePressEvent(self, event: QGraphicsSceneMouseEvent, /) -> None:
         cell = scenePosToCell(event.scenePos())
