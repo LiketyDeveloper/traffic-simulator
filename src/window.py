@@ -9,10 +9,10 @@ from PySide6.QtWidgets import (
 )
 
 from src.persistence import loadWorld, saveWorld
-from src.entities import BaseEntity
+from src.entities import BaseEntity, TrafficLight
 from src.world import World
 from src.panels import ControlPanel, PropertiesPanel
-from src.types import EntityFactory
+from src.types import EntityFactory, TLMode
 from src.utils import scenePosToCell
 
 
@@ -47,6 +47,7 @@ class MainWindow(QMainWindow):
 
         self.controlPanel = ControlPanel(self)
         self.controlPanel.entityFactorySelected.connect(self.onFactorySelected)
+        self.controlPanel.tlModeChanged.connect(self.onTlModeChanged)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.controlPanel)
 
         self.propertiesPanel = PropertiesPanel()
@@ -76,6 +77,12 @@ class MainWindow(QMainWindow):
             entity = None
 
         self.propertiesPanel.selectedEntity = entity
+
+    @Slot(object)
+    def onTlModeChanged(self, tlMode: TLMode) -> None:
+        for tl in self.world.items():
+            if isinstance(tl, TrafficLight):
+                tl.mode = tlMode
 
     def save(self):
         path, _ = QFileDialog.getSaveFileName(self, "Сохранить", "", "JSON (*.json)")

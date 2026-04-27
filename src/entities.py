@@ -1,4 +1,5 @@
 from ast import Or
+import random
 from typing import TYPE_CHECKING
 
 from PySide6.QtCore import QPoint
@@ -54,6 +55,42 @@ class BaseEntity(QGraphicsPixmapItem):
     def validatePlacement(self, cell: QPoint, world: "World") -> bool:
         existing_items = world.get(cell, types=type(self))
         return len(existing_items) == 0
+
+
+class Car(BaseEntity):
+    DIR2IMG = {
+        Direction.N: "{}vertical",
+        Direction.S: "{}bottom",
+        Direction.E: "{}right",
+        Direction.W: "{}left",
+    }
+
+    def __init__(self) -> None:
+        super().__init__(ZIndexes.Car)
+
+        self.color = random.choice(["C", "BC"])
+        self.direction = Direction.N
+
+    def tick(self, dt: float) -> None:
+        self.direction = self.getRoadDirection()
+
+    def getRoadDirection(self) -> Direction:
+        roads = self.world.get(self.cell, StraightRoad)
+        if not roads:
+            return self.direction
+
+        return roads[0].direction
+
+    @property
+    def direction(self) -> Direction:
+        return self._direction
+
+    @direction.setter
+    def direction(self, direction: Direction) -> None:
+        self._direction = direction
+
+        pm = QPixmap(getMediaPath(self.DIR2IMG[self.direction].format(self.color)))
+        self.setPixmap(pm)
 
 
 class Road(BaseEntity):
@@ -118,23 +155,30 @@ class TrafficLight(BaseEntity):
         pm = QPixmap(getMediaPath(self.STATE2IMG[self.state]))
         self.setPixmap(pm)
 
-    def _flip(self) -> None:
+    def flip(self) -> None:
         self.state = TLState.RED if self.state == TLState.GREEN else TLState.GREEN
-        self.elapsed = 0.0
+        self.elapsed = 0
 
     def tick(self, dt: float) -> None:
         if self.mode == TLMode.TIME:
-            self._tick_time(dt)
+            self.tickTime(dt)
         elif self.mode == TLMode.TRANSPORT:
-            self._tick_transport()
+            self.tickTransport()
 
-    def _tick_time(self, dt: float) -> None:
+    def tickTime(self, dt: float) -> None:
         self.elapsed += dt
         if self.elapsed >= self.STATE_DURATION:
-            self._flip()
+            self.flip()
 
-    def _tick_transport(self) -> None:
-        pass
+    def tickTransport(self) -> None:
+        carNearby = self.world.getNeighbors(self.cell, Car)
+        carNearby.extend(self.world.get(self.cell, Car))
+
+        target = TLState.GREEN if len(carNearby) > 0 else TLState.RED
+
+        if self.state != target:
+            self.state = target
+            self.elapsed = 0
 
     def validatePlacement(self, cell: QPoint, world: "World") -> bool:
         straightRoads = world.get(cell, StraightRoad)

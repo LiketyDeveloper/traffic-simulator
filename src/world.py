@@ -1,5 +1,5 @@
 from typing import TYPE_CHECKING
-from PySide6.QtCore import QObject, QPoint, QRectF, Qt, Signal
+from PySide6.QtCore import QObject, QPoint, QRectF, QTimer, Qt, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
@@ -27,15 +27,17 @@ class World(QGraphicsScene):
         size = GRID_DIM * CELL_SIZE
         self.setSceneRect(QRectF(-size / 2, -size / 2, size, size))
 
+        self.simTimer = QTimer(self)
+        self.simTimer.setInterval(tickMs)
+        self.simTimer.timeout.connect(self.onTick)
+        self.simTimer.start()
+
     def get[T: BaseEntity](
         self, at: QPoint, types: type[T] | tuple[type[T]] = BaseEntity
     ) -> list[T]:
         return [
             entity
-            for entity in self.items(
-                cellToScenePos(at) + QPoint(CELL_SIZE // 2, CELL_SIZE // 2),
-                Qt.ItemSelectionMode.IntersectsItemBoundingRect,
-            )
+            for entity in self.items()
             if isinstance(entity, types) and entity.cell == at
         ]
 
@@ -72,3 +74,8 @@ class World(QGraphicsScene):
 
         for y in range(first_top, bottom, CELL_SIZE):
             painter.drawLine(left, y, right, y)
+
+    def onTick(self) -> None:
+        for entity in self.items():
+            if isinstance(entity, BaseEntity):
+                entity.tick(self.simTimer.interval() / 1000)
