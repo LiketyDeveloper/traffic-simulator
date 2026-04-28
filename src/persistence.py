@@ -4,12 +4,12 @@ from typing import Any, Callable
 
 from PySide6.QtCore import QPoint
 
+from src.database import eventDb
 from src.entities import (
     BaseEntity,
     Crossing,
     CrossRoad,
     Pedestrian,
-    Road,
     Sign,
     StraightRoad,
     TrafficLight,
@@ -72,12 +72,6 @@ def deserializeEntity(entityData: dict[str, Any]) -> BaseEntity:
     return obj
 
 
-def serializePaths(paths: list[list[Road]]) -> list[list[dict]]:
-    return [
-        [{"x": road.cell.x(), "y": road.cell.y()} for road in path] for path in paths
-    ]
-
-
 def saveWorld(scene: World, path: str) -> None:
     entities = [
         serializeEntity(entity)
@@ -87,6 +81,8 @@ def saveWorld(scene: World, path: str) -> None:
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"entities": entities}, f, indent=2)
+
+    eventDb.log(f"Saved {len(entities)} entities to {path!r}")
 
 
 LOAD_PRIORITY: dict[str, int] = {
@@ -109,6 +105,7 @@ def loadWorld(world: World, path: str) -> None:
     entities = worldData["entities"]
     entities.sort(key=lambda i: LOAD_PRIORITY.get(i["type"], 100))
 
-    for item in entities:
-        obj = deserializeEntity(item)
-        world.addItem(obj)
+    for entity in entities:
+        world.addItem(deserializeEntity(entity))
+
+    eventDb.log(f"Saved f{len(entities)} entities to {path!r}")

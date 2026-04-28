@@ -45,7 +45,7 @@ class MainWindow(QMainWindow):
         eventDb.log(f"Application startup, arduino: {arduino.port or 'Not Connected'}")
 
     def setupWindow(self) -> None:
-        self.setWindowTitle("Traffic Simulator")
+        self.setWindowTitle("ИИС Дорожной системы")
         self.resize(1100, 700)
 
         menu = self.menuBar().addMenu("Файл")
@@ -205,6 +205,8 @@ class EventsWindow(QDialog):
 
         self.table.horizontalHeader().setStretchLastSection(True)
         self.table.horizontalHeader().setCascadingSectionResizes(True)
+        self.table.setColumnCount(2)
+        self.table.setHorizontalHeaderLabels(["Timestamp", "Message"])
 
         refresh_btn = QPushButton("Обновить")
         refresh_btn.clicked.connect(self.load_data)
@@ -216,12 +218,9 @@ class EventsWindow(QDialog):
         data = eventDb.fetch_all()
 
         self.table.setRowCount(len(data))
-        self.table.setColumnCount(3)
-        self.table.setHorizontalHeaderLabels(["ID", "Timestamp", "Message"])
 
-        for row, (eid, ts, msg) in enumerate(data):
-            self.table.setItem(row, 0, QTableWidgetItem(str(eid)))
-            self.table.setItem(row, 1, QTableWidgetItem(getPrettyTimestamp(ts)))
-            self.table.setItem(row, 2, QTableWidgetItem(msg))
+        for row, (_, ts, msg) in enumerate(data):
+            self.table.setItem(row, 0, QTableWidgetItem(getPrettyTimestamp(ts)))
+            self.table.setItem(row, 1, QTableWidgetItem(msg))
 
         self.table.resizeColumnsToContents()
