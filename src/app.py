@@ -3,7 +3,7 @@ from typing import Sequence
 
 from PySide6.QtWidgets import QApplication
 
-from src.main_window import MainWindow
+from src.window import MainWindow
 
 
 class TrafficSimulationApp(QApplication):
@@ -12,6 +12,7 @@ class TrafficSimulationApp(QApplication):
 
         self.main_window = MainWindow(self)
         self.main_window.show()
+
 
 if __name__ == "__main__":
     app = TrafficSimulationApp(sys.argv)

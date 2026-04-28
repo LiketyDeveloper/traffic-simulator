@@ -1,2184 +1,2572 @@
-[
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": -10,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -8,
-    "y": -11,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -9,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -7,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -8,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -7,
-    "y": -5,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -8,
-    "y": -4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -9,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -4,
-    "y": -1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -3,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -6,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -7,
-    "y": 4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -9,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -4,
-    "y": 4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -3,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -2,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 0,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -1,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 0,
-    "y": 4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -1,
-    "y": 5,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 1,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 5,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 7,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 6,
-    "y": 5,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 3,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 5,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 8,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 6,
-    "y": 0,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 7,
-    "y": -1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 8,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 4,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 5,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 1,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 2,
-    "y": -4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 3,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 7,
-    "y": 8,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 8,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 6,
-    "y": -4,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 7,
-    "y": -6,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 6,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 7,
-    "y": -11,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 8,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 10,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 1,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": 2,
-    "y": -11,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -5,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "TrafficLight",
-    "x": -9,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossing",
-    "x": -3,
-    "y": -10,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": -3,
-    "y": -9,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": -1,
-    "y": -3,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": -1,
-    "y": -2,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 3,
-    "y": 6,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 3,
-    "y": 7,
-    "data": {
-      "orientation": "VERTICAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": -5,
-    "y": 6,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": -4,
-    "y": 6,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 2,
-    "y": -6,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 3,
-    "y": -6,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 6,
-    "y": -5,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Crossing",
-    "x": 7,
-    "y": -5,
-    "data": {
-      "orientation": "HORIZONTAL"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": 0,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -1,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": 5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": 4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": 0,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 0,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": -7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": -7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": -7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": 2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": 7,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": 8,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -9,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -10,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -11,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": -6,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -6,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": 5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": 4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 6,
-    "y": 3,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 0,
-    "y": 0,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": 0,
-    "data": {}
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": 1,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": 5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": 4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": 5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": 4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 8,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 7,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 6,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": -11,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": -11,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": -8,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": -8,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": -10,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": -9,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -11,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -11,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -8,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -8,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": -7,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -7,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -7,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -6,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": -7,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": -6,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": -7,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": -6,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -7,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -6,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -7,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -6,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -10,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -10,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": -10,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 3,
-    "y": -9,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 3,
-    "y": -10,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": -6,
-    "data": {}
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": -5,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -8,
-    "y": -4,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": -4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -7,
-    "y": -5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -1,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": -2,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": -1,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": -1,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 0,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 0,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -5,
-    "y": 1,
-    "data": {
-      "direction": "S"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 1,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": 2,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -3,
-    "y": 3,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": 2,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -2,
-    "y": 3,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": 2,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -6,
-    "y": 3,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": 2,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": 3,
-    "data": {
-      "direction": "E"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -5,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -5,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -4,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -4,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 3,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 3,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -5,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -5,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -4,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -4,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -8,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": 3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -7,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -6,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": -4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -6,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -9,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -10,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -11,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": -1,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": 0,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": 3,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": 4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": 5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": -3,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": -2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": 1,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 2,
-    "y": 2,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": -1,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 0,
-    "y": 7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 0,
-    "y": 6,
-    "data": {}
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": 4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": 5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 0,
-    "y": 1,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 4,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 5,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 6,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 7,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -4,
-    "y": 8,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 7,
-    "y": 8,
-    "data": {
-      "direction": "N"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 1,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 2,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 3,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 4,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 5,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": -9,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": -3,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": 1,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": 6,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 8,
-    "y": -8,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 9,
-    "y": -8,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Road",
-    "x": 10,
-    "y": -8,
-    "data": {
-      "direction": "W"
-    }
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 6,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": -7,
-    "data": {}
-  },
-  {
-    "type": "Crossroad",
-    "x": 7,
-    "y": -8,
-    "data": {}
-  },
-  {
-    "type": "Sign",
-    "x": 7,
-    "y": -9,
-    "data": {
-      "sign_type": "BLOCK"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": -6,
-    "y": -6,
-    "data": {
-      "sign_type": "STOP"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": -5,
-    "y": 4,
-    "data": {
-      "sign_type": "BLOCK"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": 2,
-    "y": 2,
-    "data": {
-      "sign_type": "STOP"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": 8,
-    "y": 2,
-    "data": {
-      "sign_type": "BLOCK"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": -1,
-    "y": 0,
-    "data": {
-      "sign_type": "STOP"
-    }
-  },
-  {
-    "type": "Sign",
-    "x": 3,
-    "y": -4,
-    "data": {
-      "sign_type": "START"
-    }
-  }
-]
+{
+  "entities": [
+    {
+      "type": "TrafficLight",
+      "x": -9,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -5,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 2,
+      "y": -11,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 1,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 10,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 8,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 7,
+      "y": -11,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 6,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 7,
+      "y": -6,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 6,
+      "y": -4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 8,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 7,
+      "y": 8,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 3,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 2,
+      "y": -4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 1,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 5,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 4,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 8,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 7,
+      "y": -1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 6,
+      "y": 0,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 8,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 5,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 3,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 6,
+      "y": 5,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 7,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 5,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 1,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -1,
+      "y": 5,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 0,
+      "y": 4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -1,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": 0,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -2,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -3,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -4,
+      "y": 4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -9,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -7,
+      "y": 4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -3,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -4,
+      "y": -1,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -9,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -8,
+      "y": -4,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -7,
+      "y": -5,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -8,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -7,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -9,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -8,
+      "y": -11,
+      "data": {}
+    },
+    {
+      "type": "TrafficLight",
+      "x": -6,
+      "y": -10,
+      "data": {}
+    },
+    {
+      "type": "Sign",
+      "x": 3,
+      "y": -4,
+      "data": {
+        "type": "START"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": -1,
+      "y": 0,
+      "data": {
+        "type": "STOP"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": 8,
+      "y": 2,
+      "data": {
+        "type": "BLOCK"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": 2,
+      "y": 2,
+      "data": {
+        "type": "STOP"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": -5,
+      "y": 4,
+      "data": {
+        "type": "BLOCK"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": -6,
+      "y": -6,
+      "data": {
+        "type": "STOP"
+      }
+    },
+    {
+      "type": "Sign",
+      "x": 7,
+      "y": -9,
+      "data": {
+        "type": "BLOCK"
+      }
+    },
+    {
+      "type": "Pedestrian",
+      "x": -6,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "Pedestrian",
+      "x": 3,
+      "y": 5,
+      "data": {}
+    },
+    {
+      "type": "Pedestrian",
+      "x": 5,
+      "y": -5,
+      "data": {}
+    },
+    {
+      "type": "Pedestrian",
+      "x": -1,
+      "y": -4,
+      "data": {}
+    },
+    {
+      "type": "Pedestrian",
+      "x": -3,
+      "y": -11,
+      "data": {}
+    },
+    {
+      "type": "Crossing",
+      "x": 7,
+      "y": -5,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": 6,
+      "y": -5,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": 3,
+      "y": -6,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": 2,
+      "y": -6,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -4,
+      "y": 6,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -5,
+      "y": 6,
+      "data": {
+        "orientation": "HORIZONTAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": 3,
+      "y": 7,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": 3,
+      "y": 6,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -1,
+      "y": -2,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -1,
+      "y": -3,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -3,
+      "y": -9,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "Crossing",
+      "x": -3,
+      "y": -10,
+      "data": {
+        "orientation": "VERTICAL"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": -8,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": -8,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": -8,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": -8,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": 6,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": 1,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": 8,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 8,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 7,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 6,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": 1,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": 5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": 4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": 0,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 0,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 7,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 6,
+      "y": 1,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": 5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": 4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": 3,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": 0,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -1,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -11,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -10,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -9,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 7,
+      "y": -6,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -6,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -4,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -4,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -5,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -5,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 3,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 3,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -4,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -4,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -5,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -5,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -3,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": 3,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": 2,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": 3,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": 2,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": 3,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": 2,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": 3,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": 2,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 1,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 1,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": 0,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 0,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": -1,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": -1,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": -3,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": -5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": -4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": -4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": -5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": -6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 3,
+      "y": -10,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 3,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 2,
+      "y": -10,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -10,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -9,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -10,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": -6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": -7,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -6,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -7,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -6,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -7,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": -6,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": -7,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": -6,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": -7,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -6,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -7,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -7,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -7,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -8,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -8,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": -11,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -11,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 0,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -2,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -3,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": -8,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": -8,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -4,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -6,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": -9,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": -10,
+      "data": {
+        "direction": "W"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": -11,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": -11,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 6,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 7,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -5,
+      "y": 8,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": 4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -8,
+      "y": 5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": 4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": 5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -1,
+      "y": 1,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": 0,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 0,
+      "y": 0,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -8,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": 7,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -7,
+      "y": 6,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": 3,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": 4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": 5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -6,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": -4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -6,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -5,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -4,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -11,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -10,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -9,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": 8,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 1,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 2,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 3,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 4,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 5,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": 2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -9,
+      "y": 7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": -2,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 8,
+      "y": -7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 9,
+      "y": -7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 10,
+      "y": -7,
+      "data": {
+        "direction": "E"
+      }
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": -1,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 0,
+      "y": 3,
+      "data": {}
+    },
+    {
+      "type": "CrossRoad",
+      "x": 0,
+      "y": 2,
+      "data": {}
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": 4,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": -7,
+      "y": 5,
+      "data": {
+        "direction": "N"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": -1,
+      "data": {
+        "direction": "S"
+      }
+    },
+    {
+      "type": "StraightRoad",
+      "x": 6,
+      "y": 0,
+      "data": {
+        "direction": "S"
+      }
+    }
+  ],
+  "paths": [
+    [
+      {
+        "x": -9,
+        "y": -9
+      },
+      {
+        "x": -8,
+        "y": -9
+      },
+      {
+        "x": -7,
+        "y": -9
+      },
+      {
+        "x": -6,
+        "y": -9
+      },
+      {
+        "x": -5,
+        "y": -9
+      },
+      {
+        "x": -4,
+        "y": -9
+      },
+      {
+        "x": -3,
+        "y": -9
+      },
+      {
+        "x": -2,
+        "y": -9
+      },
+      {
+        "x": -1,
+        "y": -9
+      },
+      {
+        "x": 0,
+        "y": -9
+      },
+      {
+        "x": 1,
+        "y": -9
+      },
+      {
+        "x": 2,
+        "y": -9
+      },
+      {
+        "x": 2,
+        "y": -8
+      },
+      {
+        "x": 2,
+        "y": -7
+      },
+      {
+        "x": 2,
+        "y": -6
+      },
+      {
+        "x": 2,
+        "y": -5
+      },
+      {
+        "x": 2,
+        "y": -4
+      },
+      {
+        "x": 2,
+        "y": -3
+      },
+      {
+        "x": 2,
+        "y": -2
+      },
+      {
+        "x": 3,
+        "y": -2
+      },
+      {
+        "x": 4,
+        "y": -2
+      },
+      {
+        "x": 5,
+        "y": -2
+      },
+      {
+        "x": 6,
+        "y": -2
+      },
+      {
+        "x": 7,
+        "y": -2
+      },
+      {
+        "x": 8,
+        "y": -2
+      },
+      {
+        "x": 9,
+        "y": -2
+      },
+      {
+        "x": 10,
+        "y": -2
+      }
+    ],
+    [
+      {
+        "x": 10,
+        "y": -8
+      },
+      {
+        "x": 9,
+        "y": -8
+      },
+      {
+        "x": 8,
+        "y": -8
+      },
+      {
+        "x": 7,
+        "y": -8
+      },
+      {
+        "x": 6,
+        "y": -8
+      },
+      {
+        "x": 6,
+        "y": -7
+      },
+      {
+        "x": 6,
+        "y": -6
+      },
+      {
+        "x": 6,
+        "y": -5
+      },
+      {
+        "x": 6,
+        "y": -4
+      },
+      {
+        "x": 6,
+        "y": -3
+      },
+      {
+        "x": 5,
+        "y": -3
+      },
+      {
+        "x": 4,
+        "y": -3
+      },
+      {
+        "x": 3,
+        "y": -3
+      },
+      {
+        "x": 3,
+        "y": -4
+      },
+      {
+        "x": 3,
+        "y": -5
+      },
+      {
+        "x": 3,
+        "y": -6
+      },
+      {
+        "x": 3,
+        "y": -7
+      },
+      {
+        "x": 3,
+        "y": -8
+      },
+      {
+        "x": 3,
+        "y": -9
+      },
+      {
+        "x": 3,
+        "y": -10
+      },
+      {
+        "x": 2,
+        "y": -10
+      },
+      {
+        "x": 1,
+        "y": -10
+      },
+      {
+        "x": 0,
+        "y": -10
+      },
+      {
+        "x": -1,
+        "y": -10
+      },
+      {
+        "x": -2,
+        "y": -10
+      },
+      {
+        "x": -3,
+        "y": -10
+      },
+      {
+        "x": -4,
+        "y": -10
+      },
+      {
+        "x": -5,
+        "y": -10
+      },
+      {
+        "x": -6,
+        "y": -10
+      },
+      {
+        "x": -7,
+        "y": -10
+      },
+      {
+        "x": -8,
+        "y": -10
+      },
+      {
+        "x": -9,
+        "y": -10
+      }
+    ],
+    [
+      {
+        "x": -9,
+        "y": 7
+      },
+      {
+        "x": -8,
+        "y": 7
+      },
+      {
+        "x": -7,
+        "y": 7
+      },
+      {
+        "x": -7,
+        "y": 6
+      },
+      {
+        "x": -7,
+        "y": 5
+      },
+      {
+        "x": -7,
+        "y": 4
+      },
+      {
+        "x": -7,
+        "y": 3
+      },
+      {
+        "x": -6,
+        "y": 3
+      },
+      {
+        "x": -5,
+        "y": 3
+      },
+      {
+        "x": -4,
+        "y": 3
+      },
+      {
+        "x": -3,
+        "y": 3
+      },
+      {
+        "x": -2,
+        "y": 3
+      },
+      {
+        "x": -1,
+        "y": 3
+      },
+      {
+        "x": -1,
+        "y": 4
+      },
+      {
+        "x": -1,
+        "y": 5
+      },
+      {
+        "x": -1,
+        "y": 6
+      },
+      {
+        "x": -1,
+        "y": 7
+      },
+      {
+        "x": 0,
+        "y": 7
+      },
+      {
+        "x": 1,
+        "y": 7
+      },
+      {
+        "x": 2,
+        "y": 7
+      },
+      {
+        "x": 3,
+        "y": 7
+      },
+      {
+        "x": 4,
+        "y": 7
+      },
+      {
+        "x": 5,
+        "y": 7
+      },
+      {
+        "x": 6,
+        "y": 7
+      },
+      {
+        "x": 7,
+        "y": 7
+      },
+      {
+        "x": 8,
+        "y": 7
+      },
+      {
+        "x": 9,
+        "y": 7
+      },
+      {
+        "x": 10,
+        "y": 7
+      }
+    ]
+  ]
+}

@@ -1,8 +1,9 @@
 [project]
 name = "traffic-simulator"
 version = "0.1.0"
-description = "Add your description here"
+description = ""
 requires-python = ">=3.12"
 dependencies = [
+    "pyserial>=3.5",
     "pyside6>=6.11.0",
 ]
