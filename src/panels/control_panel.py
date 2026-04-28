@@ -9,22 +9,14 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.entities import (
-    Car,
-    Crossing,
-    Pedestrian,
-    StraightRoad,
-    CrossRoad,
-    TrafficLight,
-    Sign,
-)
-from src.types import TLMode, EntityFactory
+from src.entities import Crossing, Pedestrian, TrafficLight, Sign
+from src.types import SpawnMode, TLMode, EntityFactory
 
 
 class ControlPanel(QDockWidget):
     entityFactorySelected = Signal(object)
     tlModeChanged = Signal(object)
-    testRandomClicked = Signal()
+    spawnModeChanged = Signal(object)
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__("Управление", parent)
@@ -36,13 +28,10 @@ class ControlPanel(QDockWidget):
         self.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)
 
         self.placeableObjects: list[tuple[str, EntityFactory]] = [
-            ("Авто", Car),
             ("Светофор", TrafficLight),
             ("Пешеход", Pedestrian),
             ("Пешеходный переход", Crossing),
             ("Знак", Sign),
-            ("Дорога", StraightRoad),
-            ("Перекресток", CrossRoad),
         ]
 
         self.tlModes: list[tuple[str, TLMode]] = [
@@ -115,7 +104,12 @@ class ControlPanel(QDockWidget):
         layout.addWidget(testTemplateBtn)
         layout.addWidget(testRandomBtn)
 
-        testRandomBtn.clicked.connect(self.testRandomClicked.emit)
+        testRandomBtn.clicked.connect(
+            lambda: self.spawnModeChanged.emit(SpawnMode.RANDOM)
+        )
+        testTemplateBtn.clicked.connect(
+            lambda: self.spawnModeChanged.emit(SpawnMode.TEMPLATE)
+        )
 
         return groupBox
 

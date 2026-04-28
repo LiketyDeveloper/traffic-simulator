@@ -34,6 +34,8 @@ class World(QGraphicsScene):
         self.simTimer.timeout.connect(self.onTick)
         self.simTimer.start()
 
+        self.templatePaths: list[list[Road]]
+
     def entities[T: BaseEntity](self, types: type[T] | tuple[type[T]]) -> list[T]:
         return [e for e in self.items() if isinstance(e, types)]
 
@@ -53,6 +55,7 @@ class World(QGraphicsScene):
 
     def mousePressEvent(self, event: QGraphicsSceneMouseEvent, /) -> None:
         cell = scenePosToCell(event.scenePos())
+        # print(f'{{ "x": {cell.x()}, "y": {cell.y()} }},') # for path building
         self.onWorldCellClicked.emit(cell)
 
         return super().mousePressEvent(event)

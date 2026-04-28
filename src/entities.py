@@ -78,8 +78,8 @@ class Car(BaseEntity):
         self.color = random.choice(["C", "BC"])
         self.direction = Direction.N
 
-        self.path = path or []
         self.speed = speed
+        self.path = path or []
 
     @property
     def path(self) -> list[Road]:
@@ -88,15 +88,17 @@ class Car(BaseEntity):
     @path.setter
     def path(self, path: list[Road]) -> None:
         self._path = path
+        self.pathIndex = 0
         self.progress = 0.0
 
         if not path:
             return
 
-        road = self.path.pop(0)
-        if isinstance(road, StraightRoad):
-            self.direction = road.direction
-        self.setCell(road.cell)
+        first = path[self.pathIndex]
+        if isinstance(first, StraightRoad):
+            self.direction = first.direction
+        self.setCell(first.cell)
+        self.pathIndex = 1
 
     @property
     def direction(self) -> Direction:
@@ -109,16 +111,48 @@ class Car(BaseEntity):
         pm = QPixmap(getMediaPath(self.DIR2IMG[self.direction].format(self.color)))
         self.setPixmap(pm)
 
+    @property
+    def finished(self) -> bool:
+        return self.pathIndex >= len(self.path)
+
+    def shouldStop(self) -> bool:
+        if self.finished:
+            return False
+
+        next_road = self.path[self.pathIndex]
+        next_cell = next_road.cell
+
+        cars_ahead = self.world.get(next_cell, Car)
+        if cars_ahead:
+            return True
+
+        sign_ahead = self.world.get(next_cell, Sign)
+        if sign_ahead:
+            if sign_ahead[0].type in (SignType.BLOCK, SignType.STOP):
+                return True
+
+        tls = self.world.get(self.cell, TrafficLight)
+        for tl in tls:
+            if tl.state == TLState.RED:
+                return True
+
+        return False
+
     def tick(self, dt: float) -> None:
-        if not self.path:
+        if self.finished:
             self.world.removeItem(self)
+            return
+
+        if self.shouldStop():
+            return
 
         self.progress += self.speed * dt
         if self.progress >= 1:
-            self.direction = getDirectionFromOffset(self.path[0].cell - self.cell)
+            next_road = self.path[self.pathIndex]
+            self.direction = getDirectionFromOffset(next_road.cell - self.cell)
             self.progress -= 1
-            road = self.path.pop(0)
-            self.setCell(road.cell)
+            self.setCell(next_road.cell)
+            self.pathIndex += 1
 
 
 class Road(BaseEntity):
@@ -199,8 +233,13 @@ class TrafficLight(BaseEntity):
             self.flip()
 
     def tickTransport(self) -> None:
-        carNearby = self.world.getNeighbors(self.cell, Car)
-        carNearby.extend(self.world.get(self.cell, Car))
+        road = self.world.get(self.cell, StraightRoad)
+        if not road:
+            return
+        road = road[0]
+
+        carNearby = self.world.get(self.cell, Car)
+        carNearby.extend(self.world.get(road.getCellOffset(-1), Car))
 
         target = TLState.GREEN if len(carNearby) > 0 else TLState.RED
 
@@ -219,7 +258,7 @@ class TrafficLight(BaseEntity):
 
 
 class Pedestrian(BaseEntity):
-    def __init__(self) -> None:
+    def __init__(self, interval: int = 5) -> None:
         super().__init__(ZIndexes.Pedestrian)
 
         self.setPixmap(QPixmap(getMediaPath(f"Pedestrain")))

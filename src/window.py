@@ -1,4 +1,5 @@
-from PySide6.QtCore import QPoint, Qt, Slot
+import random
+from PySide6.QtCore import QPoint, QTimer, Qt, Slot
 from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import (
     QApplication,
@@ -12,7 +13,7 @@ from src.persistence import loadWorld, saveWorld
 from src.entities import BaseEntity, Car, TrafficLight
 from src.world import World
 from src.panels import ControlPanel, PropertiesPanel
-from src.types import EntityFactory, TLMode
+from src.types import EntityFactory, SpawnMode, TLMode
 from src.utils import scenePosToCell
 
 
@@ -23,9 +24,14 @@ class MainWindow(QMainWindow):
         self.app = app
 
         self.entityFactory: EntityFactory | None = None
+        self.spawnMode: SpawnMode | None = None
 
         self.setupWindow()
         self.setupLayout()
+
+        self.spawnTimer = QTimer()
+        self.spawnTimer.setSingleShot(True)
+        self.spawnTimer.timeout.connect(self.onSpawnTimerTimeout)
 
     def setupWindow(self) -> None:
         self.setWindowTitle("Traffic Simulator")
@@ -47,7 +53,7 @@ class MainWindow(QMainWindow):
 
         self.controlPanel = ControlPanel(self)
         self.controlPanel.entityFactorySelected.connect(self.onFactorySelected)
-        self.controlPanel.testRandomClicked.connect(self.onTestRandomClicked)
+        self.controlPanel.spawnModeChanged.connect(self.onSpawnModeChanged)
         self.controlPanel.tlModeChanged.connect(self.onTlModeChanged)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.controlPanel)
 
@@ -81,16 +87,40 @@ class MainWindow(QMainWindow):
 
     @Slot(object)
     def onTlModeChanged(self, tlMode: TLMode) -> None:
-        for tl in self.world.items():
-            if isinstance(tl, TrafficLight):
-                tl.mode = tlMode
+        for tl in self.world.entities(TrafficLight):
+            tl.mode = tlMode
+
+    @Slot(object)
+    def onSpawnModeChanged(self, spawnMode: SpawnMode) -> None:
+        for car in self.world.entities(Car):
+            car.scene().removeItem(car)
+        if spawnMode == self.spawnMode:
+            self.spawnMode = None
+        else:
+            self.spawnMode = spawnMode
+        self.onSpawnTimerTimeout()
 
     @Slot()
-    def onTestRandomClicked(self) -> None:
-        path = self.world.generateRandomPath()
-        car = Car(path)
+    def onSpawnTimerTimeout(self) -> None:
+        if self.spawnMode == SpawnMode.RANDOM:
+            self.spawnRandomCar()
+            intervalMs = random.randint(1000, 3000)
+            self.spawnTimer.start(intervalMs)
 
-        self.world.addItem(car)
+        elif self.spawnMode == SpawnMode.TEMPLATE:
+            self.spawnTemplateCars()
+            self.spawnTimer.start(7000)
+
+    def spawnRandomCar(self) -> None:
+        path = self.world.generateRandomPath()
+        if path:
+            car = Car(path)
+            self.world.addItem(car)
+
+    def spawnTemplateCars(self) -> None:
+        for path in self.world.templatePaths:
+            car = Car(path)
+            self.world.addItem(car)
 
     def save(self):
         path, _ = QFileDialog.getSaveFileName(self, "Сохранить", "", "JSON (*.json)")
@@ -110,9 +140,12 @@ class WorldView(QGraphicsView):
     def __init__(self, world: World, parent=None):
         super().__init__(world, parent)
 
-        self.setRenderHint(QPainter.RenderHint.Antialiasing, False)
+        self.setRenderHint(QPainter.RenderHint.Antialiasing, True)
         self.setRenderHint(QPainter.RenderHint.TextAntialiasing, False)
 
+        self.setViewportUpdateMode(
+            QGraphicsView.ViewportUpdateMode.FullViewportUpdate
+        )
         self.setMouseTracking(True)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
