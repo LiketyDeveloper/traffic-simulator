@@ -34,8 +34,6 @@ class World(QGraphicsScene):
         self.simTimer.timeout.connect(self.onTick)
         self.simTimer.start()
 
-        self.templatePaths: list[list[Road]]
-
     def entities[T: BaseEntity](self, types: type[T] | tuple[type[T]]) -> list[T]:
         return [e for e in self.items() if isinstance(e, types)]
 
@@ -55,7 +53,6 @@ class World(QGraphicsScene):
 
     def mousePressEvent(self, event: QGraphicsSceneMouseEvent, /) -> None:
         cell = scenePosToCell(event.scenePos())
-        # print(f'{{ "x": {cell.x()}, "y": {cell.y()} }},') # for path building
         self.onWorldCellClicked.emit(cell)
 
         return super().mousePressEvent(event)
@@ -84,13 +81,9 @@ class World(QGraphicsScene):
             if isinstance(entity, BaseEntity):
                 entity.tick(self.simTimer.interval() / 1000)
 
-    def generateRandomPath(self, maxLength: int = 60) -> list[Road]:
-        entrances = self.getEntrances()
-        if not entrances:
-            return []
-
-        current = random.choice(entrances)
-        path: list[Road] = [current]
+    def generateRandomPath(self, start: StraightRoad, maxLength: int = 60) -> list[Road]:
+        path: list[Road] = [start]
+        current = start
 
         for _ in range(maxLength):
             ahead = self.get(current.getCellOffset(1), Road)
@@ -112,7 +105,7 @@ class World(QGraphicsScene):
 
                 for turnType, pathSteps in expandedPaths:
                     dst = self.get(current.cell + pathSteps[-1], StraightRoad)
-                    if not dst:
+                    if not dst or not dst[0].canBePassed():
                         continue
 
                     for stepOffset in pathSteps:

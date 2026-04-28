@@ -1,14 +1,18 @@
+from dataclasses import dataclass
+from typing import Callable
+
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import (
+    QComboBox,
     QDockWidget,
     QFormLayout,
-    QVBoxLayout,
     QLabel,
     QPushButton,
+    QVBoxLayout,
     QWidget,
-    QComboBox,
 )
 
+from src.database import eventDb
 from src.entities import BaseEntity, Sign, TrafficLight
 from src.types import SignType, TLState
 
@@ -25,6 +29,18 @@ def enum_editor(enum_type):
         return combo
 
     return factory
+
+
+type Getter[T] = Callable[[], T]
+type Setter[T] = Callable[[T], None]
+
+
+@dataclass
+class Property[T]:
+    name: str
+    getter: Getter[T]
+    setter: Setter[T]
+    editor: Callable[[Getter[T], Setter[T]], QWidget]
 
 
 class PropertiesPanel(QDockWidget):
@@ -80,31 +96,38 @@ class PropertiesPanel(QDockWidget):
 
         specs = self.get_specs(self.selectedEntity)
 
-        for name, attr, editor_factory in specs:
-            getter = self.make_getter(attr)
-            setter = self.make_setter(attr)
-
-            widget = editor_factory(getter, setter)
-            self.form.addRow(name, widget)
+        for spec in specs:
+            widget = spec.editor(spec.getter, spec.setter)
+            self.form.addRow(spec.name, widget)
 
         self.delete_btn.show()
 
-    def get_specs(self, entity):
+    def get_specs(self, entity) -> list[Property]:
         if isinstance(entity, TrafficLight):
-            return [("Состояние", "state", enum_editor(TLState))]
+            return [
+                Property(
+                    "Cостояние",
+                    lambda: getattr(self.selectedEntity, "state"),
+                    lambda v: setattr(self.selectedEntity, "state", v),
+                    editor=enum_editor(TLState),
+                )
+            ]
 
         if isinstance(entity, Sign):
-            return [("Тип", "type", enum_editor(SignType))]
+            return [
+                Property(
+                    "Тип",
+                    lambda: getattr(self.selectedEntity, "type"),
+                    lambda v: setattr(self.selectedEntity, "type", v),
+                    editor=enum_editor(SignType),
+                )
+            ]
 
         return []
 
-    def make_getter(self, attr):
-        return lambda: getattr(self.selectedEntity, attr)
-
-    def make_setter(self, attr):
-        return lambda value: setattr(self.selectedEntity, attr, value)
-
     def delete_object(self):
         if self.selectedEntity:
+            cell = self.selectedEntity.cell
+            eventDb.log(f"Remove {type(self.selectedEntity).__name__} at ({cell.x()}, {cell.y()})")
             self.selectedEntity.scene().removeItem(self.selectedEntity)
             self.selectedEntity = None

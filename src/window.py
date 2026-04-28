@@ -1,20 +1,28 @@
 import random
-from PySide6.QtCore import QPoint, QTimer, Qt, Slot
+
+from PySide6.QtCore import QPoint, Qt, QTimer, Slot
 from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import (
     QApplication,
+    QDialog,
     QFileDialog,
     QGraphicsView,
+    QHeaderView,
     QLabel,
     QMainWindow,
+    QPushButton,
+    QTableWidget,
+    QTableWidgetItem,
+    QVBoxLayout,
 )
 
-from src.persistence import loadWorld, saveWorld
+from src.database import eventDb
 from src.entities import BaseEntity, Car, TrafficLight
-from src.world import World
 from src.panels import ControlPanel, PropertiesPanel
-from src.types import EntityFactory, SpawnMode, TLMode
-from src.utils import scenePosToCell
+from src.persistence import loadWorld, saveWorld
+from src.types import EntityFactory, TLMode
+from src.utils import getPrettyTimestamp, scenePosToCell
+from src.world import World
 
 
 class MainWindow(QMainWindow):
@@ -24,14 +32,18 @@ class MainWindow(QMainWindow):
         self.app = app
 
         self.entityFactory: EntityFactory | None = None
-        self.spawnMode: SpawnMode | None = None
 
         self.setupWindow()
         self.setupLayout()
 
+        self.shouldSpawnCar = False
+        self.events_window = None
+
         self.spawnTimer = QTimer()
         self.spawnTimer.setSingleShot(True)
         self.spawnTimer.timeout.connect(self.onSpawnTimerTimeout)
+
+        eventDb.log("Application startup")
 
     def setupWindow(self) -> None:
         self.setWindowTitle("Traffic Simulator")
@@ -41,6 +53,9 @@ class MainWindow(QMainWindow):
 
         save_action = menu.addAction("Сохранить")
         load_action = menu.addAction("Загрузить")
+
+        events_action = self.menuBar().addAction("События")
+        events_action.triggered.connect(self.openEventsWindow)
 
         save_action.triggered.connect(self.save)
         load_action.triggered.connect(self.load)
@@ -53,7 +68,7 @@ class MainWindow(QMainWindow):
 
         self.controlPanel = ControlPanel(self)
         self.controlPanel.entityFactorySelected.connect(self.onFactorySelected)
-        self.controlPanel.spawnModeChanged.connect(self.onSpawnModeChanged)
+        self.controlPanel.spawnCarsClicked.connect(self.onSpawnCarsClicked)
         self.controlPanel.tlModeChanged.connect(self.onTlModeChanged)
         self.addDockWidget(Qt.DockWidgetArea.LeftDockWidgetArea, self.controlPanel)
 
@@ -72,6 +87,9 @@ class MainWindow(QMainWindow):
             if entity.validatePlacement(cell, self.world):
                 entity.setCell(cell)
                 self.world.addItem(entity)
+                eventDb.log(
+                    f"Place {type(entity).__name__} at ({cell.x()}, {cell.y()})"
+                )
 
             self.controlPanel.deselectEntityFactory()
 
@@ -87,38 +105,42 @@ class MainWindow(QMainWindow):
 
     @Slot(object)
     def onTlModeChanged(self, tlMode: TLMode) -> None:
+        eventDb.log(f"Set Traffic Light mode to {tlMode.name}")
         for tl in self.world.entities(TrafficLight):
             tl.mode = tlMode
 
     @Slot(object)
-    def onSpawnModeChanged(self, spawnMode: SpawnMode) -> None:
+    def onSpawnCarsClicked(self) -> None:
         for car in self.world.entities(Car):
             car.scene().removeItem(car)
-        if spawnMode == self.spawnMode:
-            self.spawnMode = None
-        else:
-            self.spawnMode = spawnMode
+
+        self.shouldSpawnCar = not self.shouldSpawnCar
+        eventDb.log(f"Turn {'on' if self.shouldSpawnCar else 'off'} car spawning")
         self.onSpawnTimerTimeout()
 
     @Slot()
     def onSpawnTimerTimeout(self) -> None:
-        if self.spawnMode == SpawnMode.RANDOM:
+        if self.shouldSpawnCar:
             self.spawnRandomCar()
             intervalMs = random.randint(1000, 3000)
             self.spawnTimer.start(intervalMs)
 
-        elif self.spawnMode == SpawnMode.TEMPLATE:
-            self.spawnTemplateCars()
-            self.spawnTimer.start(7000)
+    @Slot()
+    def openEventsWindow(self) -> None:
+        if self.events_window is None:
+            self.events_window = EventsWindow(self)
+
+        self.events_window.load_data()
+        self.events_window.show()
+        self.events_window.raise_()
+        self.events_window.activateWindow()
 
     def spawnRandomCar(self) -> None:
-        path = self.world.generateRandomPath()
+        entrances = self.world.getEntrances()
+        if not entrances:
+            return
+        path = self.world.generateRandomPath(random.choice(entrances))
         if path:
-            car = Car(path)
-            self.world.addItem(car)
-
-    def spawnTemplateCars(self) -> None:
-        for path in self.world.templatePaths:
             car = Car(path)
             self.world.addItem(car)
 
@@ -140,12 +162,7 @@ class WorldView(QGraphicsView):
     def __init__(self, world: World, parent=None):
         super().__init__(world, parent)
 
-        self.setRenderHint(QPainter.RenderHint.Antialiasing, True)
-        self.setRenderHint(QPainter.RenderHint.TextAntialiasing, False)
-
-        self.setViewportUpdateMode(
-            QGraphicsView.ViewportUpdateMode.FullViewportUpdate
-        )
+        self.setViewportUpdateMode(QGraphicsView.ViewportUpdateMode.FullViewportUpdate)
         self.setMouseTracking(True)
         self.setFocusPolicy(Qt.FocusPolicy.StrongFocus)
 
@@ -173,3 +190,39 @@ class WorldView(QGraphicsView):
     def leaveEvent(self, event):
         self.cursorLabel.hide()
         super().leaveEvent(event)
+
+
+class EventsWindow(QDialog):
+    def __init__(self, parent=None) -> None:
+        super().__init__(parent)
+
+        self.setWindowTitle("События")
+        self.resize(700, 400)
+
+        layout = QVBoxLayout(self)
+
+        self.table = QTableWidget()
+        layout.addWidget(self.table)
+
+        self.table.horizontalHeader().setStretchLastSection(True)
+        self.table.horizontalHeader().setCascadingSectionResizes(True)
+
+        refresh_btn = QPushButton("Обновить")
+        refresh_btn.clicked.connect(self.load_data)
+        layout.addWidget(refresh_btn)
+
+        self.load_data()
+
+    def load_data(self) -> None:
+        data = eventDb.fetch_all()
+
+        self.table.setRowCount(len(data))
+        self.table.setColumnCount(3)
+        self.table.setHorizontalHeaderLabels(["ID", "Timestamp", "Message"])
+
+        for row, (eid, ts, msg) in enumerate(data):
+            self.table.setItem(row, 0, QTableWidgetItem(str(eid)))
+            self.table.setItem(row, 1, QTableWidgetItem(getPrettyTimestamp(ts)))
+            self.table.setItem(row, 2, QTableWidgetItem(msg))
+
+        self.table.resizeColumnsToContents()

@@ -42,8 +42,3 @@ class TurnType(Enum):
     RIGHT = 1
     UTURN = 2
     LEFT = 3
-
-
-class SpawnMode(Enum):
-    RANDOM = 0
-    TEMPLATE = 1

@@ -1,13 +1,18 @@
 import math
+from datetime import datetime
+
 from PySide6.QtCore import QPoint, QPointF
 
-from src.types import Direction, TurnType
-
 from src.constants import CELL_SIZE, CLOCKWISE, DIR2OFFSET, MEDIA_PATH
+from src.types import Direction, TurnType
 
 
 def getMediaPath(media_name: str) -> str:
     return str(MEDIA_PATH / media_name)
+
+
+def getPrettyTimestamp(timestamp: float) -> str:
+    return datetime.fromtimestamp(timestamp).strftime("%Y-%m-%d %H:%M:%S")
 
 
 def scenePosToCell(pos: QPoint | QPointF):

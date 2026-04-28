@@ -1,79 +1,72 @@
-from dataclasses import dataclass
 import json
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Callable
+
 from PySide6.QtCore import QPoint
 
 from src.entities import (
     BaseEntity,
-    Road,
-    StraightRoad,
-    CrossRoad,
-    TrafficLight,
-    Pedestrian,
     Crossing,
+    CrossRoad,
+    Pedestrian,
+    Road,
     Sign,
+    StraightRoad,
+    TrafficLight,
 )
+from src.types import Direction, Orientation, SignType
 from src.world import World
-from src.types import Direction, SignType, Orientation
 
-CLASS_MAP = {
-    cls.__name__: cls
-    for cls in (
-        StraightRoad,
-        CrossRoad,
-        TrafficLight,
-        Pedestrian,
-        Crossing,
-        Sign,
-    )
+
+@dataclass
+class Serializer[T: BaseEntity]:
+    serialize: Callable[[T], dict]
+    deserialize: Callable[[dict[str, Any]], T]
+
+
+SERIALIZERS: dict[type[BaseEntity], Serializer] = {
+    StraightRoad: Serializer(
+        lambda e: {"direction": e.direction.name},
+        lambda d: StraightRoad(Direction[d.get("direction", "N")]),
+    ),
+    CrossRoad: Serializer(lambda e: {}, lambda d: CrossRoad()),
+    TrafficLight: Serializer(lambda e: {}, lambda d: TrafficLight()),
+    Pedestrian: Serializer(lambda e: {}, lambda d: Pedestrian()),
+    Sign: Serializer(
+        lambda e: {"type": e.type.name},
+        lambda d: Sign(SignType[d.get("type", "BLOCK")]),
+    ),
+    Crossing: Serializer(
+        lambda e: {"orientation": e.orientation.name},
+        lambda d: Crossing(Orientation[d.get("orientation", "HORIZONTAL")]),
+    ),
 }
 
 
+CLASS_MAP: dict[str, type[BaseEntity]] = {cls.__name__: cls for cls in SERIALIZERS}
+
+
 def serializeEntity(entity: BaseEntity) -> dict:
-    data = {
+    serializer = SERIALIZERS.get(type(entity))
+    if not serializer:
+        raise ValueError(f"No serializer for {type(entity).__name__}")
+
+    return {
         "type": type(entity).__name__,
         "x": entity.cell.x(),
         "y": entity.cell.y(),
-        "data": {},
+        "data": serializer.serialize(entity),
     }
-
-    if isinstance(entity, StraightRoad):
-        data["data"]["direction"] = entity.direction.name
-
-    elif isinstance(entity, Sign):
-        data["data"]["type"] = entity.type.name
-
-    elif isinstance(entity, Crossing):
-        data["data"]["orientation"] = entity.orientation.name
-
-    return data
 
 
 def deserializeEntity(entityData: dict[str, Any]) -> BaseEntity:
     cls = CLASS_MAP[entityData["type"]]
-    data = entityData.get("data", {})
+    serializer = SERIALIZERS.get(cls)
 
-    if cls is StraightRoad:
-        direction = Direction[data.get("direction", "N")]
-        obj = StraightRoad(direction)
+    if not serializer:
+        raise ValueError(f"No deserializer for {cls.__name__}")
 
-    elif cls is CrossRoad:
-        obj = CrossRoad()
-
-    elif cls is TrafficLight:
-        obj = TrafficLight()
-
-    elif cls is Sign:
-        obj = Sign(SignType[data["type"]])
-
-    elif cls is Crossing:
-        obj = Crossing()
-        if "orientation" in data:
-            obj.orientation = Orientation[data["orientation"]]
-
-    else:
-        obj = cls()
-
+    obj = serializer.deserialize(entityData.get("data", {}))
     obj.setCell(QPoint(entityData["x"], entityData["y"]))
 
     return obj
@@ -92,17 +85,8 @@ def saveWorld(scene: World, path: str) -> None:
         if isinstance(entity, BaseEntity)
     ]
 
-    paths = serializePaths(scene.templatePaths)
-
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(
-            {
-                "entities": entities,
-                "paths": paths,
-            },
-            f,
-            indent=2,
-        )
+        json.dump({"entities": entities}, f, indent=2)
 
 
 LOAD_PRIORITY: dict[str, int] = {
@@ -114,24 +98,6 @@ LOAD_PRIORITY: dict[str, int] = {
     "Pedestrian": 4,
     "Car": 5,
 }
-
-
-def loadTemplatePaths(world: World, pathsData: dict) -> list[list[Road]]:
-    loadedPaths: list[list[Road]] = []
-
-    for pathData in pathsData:
-        path: list[Road] = []
-        for pointData in pathData:
-            cell = QPoint(pointData["x"], pointData["y"])
-            road = world.get(cell, Road)
-            if not road:
-                break
-
-            path.append(road[0])
-
-        loadedPaths.append(path)
-
-    return loadedPaths
 
 
 def loadWorld(world: World, path: str) -> None:
@@ -146,5 +112,3 @@ def loadWorld(world: World, path: str) -> None:
     for item in entities:
         obj = deserializeEntity(item)
         world.addItem(obj)
-
-    world.templatePaths = loadTemplatePaths(world, worldData["paths"])

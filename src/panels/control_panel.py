@@ -9,14 +9,21 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.entities import Crossing, Pedestrian, TrafficLight, Sign
-from src.types import SpawnMode, TLMode, EntityFactory
+from src.entities import (
+    Crossing,
+    CrossRoad,
+    Pedestrian,
+    Sign,
+    StraightRoad,
+    TrafficLight,
+)
+from src.types import EntityFactory, TLMode
 
 
 class ControlPanel(QDockWidget):
     entityFactorySelected = Signal(object)
     tlModeChanged = Signal(object)
-    spawnModeChanged = Signal(object)
+    spawnCarsClicked = Signal()
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__("Управление", parent)
@@ -28,6 +35,8 @@ class ControlPanel(QDockWidget):
         self.setFeatures(QDockWidget.DockWidgetFeature.NoDockWidgetFeatures)
 
         self.placeableObjects: list[tuple[str, EntityFactory]] = [
+            ("Дорога", StraightRoad),
+            ("Перекресток", CrossRoad),
             ("Светофор", TrafficLight),
             ("Пешеход", Pedestrian),
             ("Пешеходный переход", Crossing),
@@ -54,11 +63,12 @@ class ControlPanel(QDockWidget):
 
         placementSection = self.createPlacementSection()
         tlModeSection = self.createTlSection()
-        runSection = self.createRunSection()
+        spawnCarsBtn = self.createSpawnCarsBtn()
 
         layout.addWidget(placementSection)
         layout.addWidget(tlModeSection)
-        layout.addWidget(runSection)
+        layout.addWidget(spawnCarsBtn)
+
         layout.addStretch()
 
     def createPlacementSection(self) -> QGroupBox:
@@ -94,24 +104,12 @@ class ControlPanel(QDockWidget):
 
         return groupBox
 
-    def createRunSection(self) -> QGroupBox:
-        groupBox = QGroupBox("Запуск")
-        layout = QHBoxLayout(groupBox)
+    def createSpawnCarsBtn(self) -> QPushButton:
+        spawnCarsBtn = QPushButton("Тест-рандом")
 
-        testTemplateBtn = QPushButton("Тест-шаблон")
-        testRandomBtn = QPushButton("Тест-рандом")
+        spawnCarsBtn.clicked.connect(lambda: self.spawnCarsClicked.emit())
 
-        layout.addWidget(testTemplateBtn)
-        layout.addWidget(testRandomBtn)
-
-        testRandomBtn.clicked.connect(
-            lambda: self.spawnModeChanged.emit(SpawnMode.RANDOM)
-        )
-        testTemplateBtn.clicked.connect(
-            lambda: self.spawnModeChanged.emit(SpawnMode.TEMPLATE)
-        )
-
-        return groupBox
+        return spawnCarsBtn
 
     @Slot(int)
     def onSelectionChanged(self, index: int) -> None:

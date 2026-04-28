@@ -11,15 +11,16 @@ from PySide6.QtWidgets import (
     QGraphicsSceneMouseEvent,
 )
 
+from src.constants import DIR2OFFSET, DIR2ROT, ZIndexes
+from src.database import eventDb
+from src.types import Direction, Orientation, SignType, TLMode, TLState
 from src.utils import (
+    cellToScenePos,
     getDirectionFromOffset,
     getMediaPath,
     scenePosToCell,
-    cellToScenePos,
     snapScenePosToCell,
 )
-from src.constants import DIR2OFFSET, DIR2ROT, ZIndexes
-from src.types import Direction, Orientation, SignType, TLMode, TLState
 
 if TYPE_CHECKING:
     from world import World
@@ -51,6 +52,9 @@ class BaseEntity(QGraphicsPixmapItem):
         if cell == self.cell or not self.validatePlacement(cell, self.world):
             self.setCell(self.cell)
             return
+        eventDb.log(
+            f"Move {type(self).__name__} from ({self.cell.x()}, {self.cell.y()}) to ({cell.x()}, {cell.y()})"
+        )
 
         self.setCell(cell)
 
@@ -60,8 +64,8 @@ class BaseEntity(QGraphicsPixmapItem):
         self.setPos(cellToScenePos(cell))
 
     def validatePlacement(self, cell: QPoint, world: "World") -> bool:
-        existing_items = world.get(cell, types=type(self))
-        return len(existing_items) == 0
+        existingItems = world.get(cell, types=type(self))
+        return len(existingItems) == 0
 
 
 class Car(BaseEntity):
@@ -72,7 +76,7 @@ class Car(BaseEntity):
         Direction.W: "{}left",
     }
 
-    def __init__(self, path: list[Road] | None = None, speed: float = 2) -> None:
+    def __init__(self, path: list[Road] | None = None, speed: float = 3) -> None:
         super().__init__(ZIndexes.Car, movable=False)
 
         self.color = random.choice(["C", "BC"])
@@ -122,14 +126,12 @@ class Car(BaseEntity):
         next_road = self.path[self.pathIndex]
         next_cell = next_road.cell
 
+        if not next_road.canBePassed():
+            return True
+
         cars_ahead = self.world.get(next_cell, Car)
         if cars_ahead:
             return True
-
-        sign_ahead = self.world.get(next_cell, Sign)
-        if sign_ahead:
-            if sign_ahead[0].type in (SignType.BLOCK, SignType.STOP):
-                return True
 
         tls = self.world.get(self.cell, TrafficLight)
         for tl in tls:
@@ -158,6 +160,17 @@ class Car(BaseEntity):
 class Road(BaseEntity):
     def __init__(self, z_index: int = 0) -> None:
         super().__init__(ZIndexes.Road)
+
+    def canBePassed(self) -> bool:
+        sign = self.world.get(self.cell, Sign)
+        if sign:
+            if sign[0].type in (SignType.BLOCK, SignType.STOP):
+                return False
+        return True
+
+    def validatePlacement(self, cell: QPoint, world: "World") -> bool:
+        onRoad = len(world.get(cell, types=Road)) > 0
+        return not onRoad
 
 
 class StraightRoad(Road):
@@ -204,8 +217,6 @@ class TrafficLight(BaseEntity):
         self.state = state
         self.mode: TLMode = TLMode.TIME
 
-        self.elapsed: float = 0.0
-
     @property
     def state(self) -> TLState:
         return self._state
@@ -213,6 +224,7 @@ class TrafficLight(BaseEntity):
     @state.setter
     def state(self, state: TLState) -> None:
         self._state = state
+        self.elapsed: float = 0.0
 
         pm = QPixmap(getMediaPath(self.STATE2IMG[self.state]))
         self.setPixmap(pm)
@@ -222,6 +234,9 @@ class TrafficLight(BaseEntity):
         self.elapsed = 0
 
     def tick(self, dt: float) -> None:
+        if self.state == TLState.YELLOW:
+            return
+
         if self.mode == TLMode.TIME:
             self.tickTime(dt)
         elif self.mode == TLMode.TRANSPORT:
