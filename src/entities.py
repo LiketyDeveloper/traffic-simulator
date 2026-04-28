@@ -1,4 +1,5 @@
-from ast import Or
+from __future__ import annotations
+
 import random
 from typing import TYPE_CHECKING
 
@@ -10,7 +11,13 @@ from PySide6.QtWidgets import (
     QGraphicsSceneMouseEvent,
 )
 
-from src.utils import getMediaPath, scenePosToCell, cellToScenePos, snapScenePosToCell
+from src.utils import (
+    getDirectionFromOffset,
+    getMediaPath,
+    scenePosToCell,
+    cellToScenePos,
+    snapScenePosToCell,
+)
 from src.constants import DIR2OFFSET, DIR2ROT, ZIndexes
 from src.types import Direction, Orientation, SignType, TLMode, TLState
 
@@ -19,13 +26,13 @@ if TYPE_CHECKING:
 
 
 class BaseEntity(QGraphicsPixmapItem):
-    def __init__(self, z_index: int = 0) -> None:
+    def __init__(self, z_index: int = 0, movable: bool = True) -> None:
         super().__init__()
 
-        self.setFlags(
-            QGraphicsItem.GraphicsItemFlag.ItemIsSelectable
-            | QGraphicsItem.GraphicsItemFlag.ItemIsMovable
-        )
+        flags = QGraphicsItem.GraphicsItemFlag.ItemIsSelectable
+        if movable:
+            flags |= QGraphicsItem.GraphicsItemFlag.ItemIsMovable
+        self.setFlags(flags)
 
         self.setZValue(z_index)
         self.cell = scenePosToCell(self.pos())
@@ -65,21 +72,31 @@ class Car(BaseEntity):
         Direction.W: "{}left",
     }
 
-    def __init__(self) -> None:
-        super().__init__(ZIndexes.Car)
+    def __init__(self, path: list[Road] | None = None, speed: float = 2) -> None:
+        super().__init__(ZIndexes.Car, movable=False)
 
         self.color = random.choice(["C", "BC"])
         self.direction = Direction.N
 
-    def tick(self, dt: float) -> None:
-        self.direction = self.getRoadDirection()
+        self.path = path or []
+        self.speed = speed
 
-    def getRoadDirection(self) -> Direction:
-        roads = self.world.get(self.cell, StraightRoad)
-        if not roads:
-            return self.direction
+    @property
+    def path(self) -> list[Road]:
+        return self._path
 
-        return roads[0].direction
+    @path.setter
+    def path(self, path: list[Road]) -> None:
+        self._path = path
+        self.progress = 0.0
+
+        if not path:
+            return
+
+        road = self.path.pop(0)
+        if isinstance(road, StraightRoad):
+            self.direction = road.direction
+        self.setCell(road.cell)
 
     @property
     def direction(self) -> Direction:
@@ -91,6 +108,17 @@ class Car(BaseEntity):
 
         pm = QPixmap(getMediaPath(self.DIR2IMG[self.direction].format(self.color)))
         self.setPixmap(pm)
+
+    def tick(self, dt: float) -> None:
+        if not self.path:
+            self.world.removeItem(self)
+
+        self.progress += self.speed * dt
+        if self.progress >= 1:
+            self.direction = getDirectionFromOffset(self.path[0].cell - self.cell)
+            self.progress -= 1
+            road = self.path.pop(0)
+            self.setCell(road.cell)
 
 
 class Road(BaseEntity):

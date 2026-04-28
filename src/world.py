@@ -1,12 +1,14 @@
-from typing import TYPE_CHECKING
-from PySide6.QtCore import QObject, QPoint, QRectF, QTimer, Qt, Signal
+from functools import lru_cache
+import random
+
+from PySide6.QtCore import QObject, QPoint, QRectF, QTimer, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
 from src.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
-from src.utils import cellToScenePos, scenePosToCell
+from src.utils import expandCrossroadPaths, scenePosToCell
 
-from src.entities import BaseEntity
+from src.entities import BaseEntity, CrossRoad, Road, StraightRoad
 
 
 class World(QGraphicsScene):
@@ -32,14 +34,13 @@ class World(QGraphicsScene):
         self.simTimer.timeout.connect(self.onTick)
         self.simTimer.start()
 
+    def entities[T: BaseEntity](self, types: type[T] | tuple[type[T]]) -> list[T]:
+        return [e for e in self.items() if isinstance(e, types)]
+
     def get[T: BaseEntity](
         self, at: QPoint, types: type[T] | tuple[type[T]] = BaseEntity
     ) -> list[T]:
-        return [
-            entity
-            for entity in self.items()
-            if isinstance(entity, types) and entity.cell == at
-        ]
+        return [e for e in self.entities(types) if e.cell == at]
 
     def getNeighbors[T: BaseEntity](
         self, at: QPoint, types: type[T] | tuple[type[T]] = BaseEntity
@@ -79,3 +80,57 @@ class World(QGraphicsScene):
         for entity in self.items():
             if isinstance(entity, BaseEntity):
                 entity.tick(self.simTimer.interval() / 1000)
+
+    def generateRandomPath(self, maxLength: int = 60) -> list[Road]:
+        entrances = self.getEntrances()
+        if not entrances:
+            return []
+
+        current = random.choice(entrances)
+        path: list[Road] = [current]
+
+        for _ in range(maxLength):
+            ahead = self.get(current.getCellOffset(1), Road)
+
+            if not ahead:
+                break
+            ahead = ahead[0]
+
+            if isinstance(ahead, StraightRoad):
+                if current.direction != ahead.direction:
+                    break
+
+                path.append(ahead)
+                current = ahead
+                continue
+            if isinstance(ahead, CrossRoad):
+                expandedPaths = list(expandCrossroadPaths(current.direction).items())
+                random.shuffle(expandedPaths)
+
+                for turnType, pathSteps in expandedPaths:
+                    dst = self.get(current.cell + pathSteps[-1], StraightRoad)
+                    if not dst:
+                        continue
+
+                    for stepOffset in pathSteps:
+                        road = self.get(current.cell + stepOffset, Road)
+                        if not road:
+                            break  # if gap in path then abort turn
+                        path.append(road[0])
+
+                    current = dst[0]
+                    break
+
+        return path
+
+    @lru_cache(maxsize=32)
+    def getEntrances(self) -> list[StraightRoad]:
+        entrances: list[StraightRoad] = []
+
+        for road in self.entities(StraightRoad):
+            behindRoads = self.get(road.getCellOffset(-1), Road)
+
+            if len(behindRoads) == 0:
+                entrances.append(road)
+
+        return entrances

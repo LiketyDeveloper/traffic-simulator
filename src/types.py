@@ -7,6 +7,7 @@ if TYPE_CHECKING:
 
 type EntityFactory = Callable[[], "BaseEntity"]
 
+
 class Direction(Enum):
     N = 0
     S = 1
@@ -34,3 +35,10 @@ class SignType(Enum):
     BLOCK = 0
     STOP = 1
     START = 2
+
+
+class TurnType(Enum):
+    FORWARD = 0
+    RIGHT = 1
+    UTURN = 2
+    LEFT = 3

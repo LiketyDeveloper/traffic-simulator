@@ -24,6 +24,7 @@ from src.types import TLMode, EntityFactory
 class ControlPanel(QDockWidget):
     entityFactorySelected = Signal(object)
     tlModeChanged = Signal(object)
+    testRandomClicked = Signal()
 
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__("Управление", parent)
@@ -62,16 +63,16 @@ class ControlPanel(QDockWidget):
         layout.setContentsMargins(8, 8, 8, 8)
         layout.setSpacing(8)
 
-        placementSection = self.create_placement_section()
-        tlModeSection = self.create_tl_section()
-        runSection = self.create_run_section()
+        placementSection = self.createPlacementSection()
+        tlModeSection = self.createTlSection()
+        runSection = self.createRunSection()
 
         layout.addWidget(placementSection)
         layout.addWidget(tlModeSection)
         layout.addWidget(runSection)
         layout.addStretch()
 
-    def create_placement_section(self) -> QGroupBox:
+    def createPlacementSection(self) -> QGroupBox:
         group_box = QGroupBox("Размещение", self)
         layout = QVBoxLayout(group_box)
 
@@ -88,7 +89,7 @@ class ControlPanel(QDockWidget):
 
         return group_box
 
-    def create_tl_section(self) -> QGroupBox:
+    def createTlSection(self) -> QGroupBox:
         groupBox = QGroupBox("Режим светофоров")
         layout = QVBoxLayout(groupBox)
 
@@ -104,7 +105,7 @@ class ControlPanel(QDockWidget):
 
         return groupBox
 
-    def create_run_section(self) -> QGroupBox:
+    def createRunSection(self) -> QGroupBox:
         groupBox = QGroupBox("Запуск")
         layout = QHBoxLayout(groupBox)
 
@@ -113,6 +114,8 @@ class ControlPanel(QDockWidget):
 
         layout.addWidget(testTemplateBtn)
         layout.addWidget(testRandomBtn)
+
+        testRandomBtn.clicked.connect(self.testRandomClicked.emit)
 
         return groupBox
 

@@ -36,3 +36,5 @@ DIR2OFFSET: dict[Direction, QPoint] = {
     Direction.W: QPoint(-1, 0),
     Direction.E: QPoint(1, 0),
 }
+
+CLOCKWISE = [Direction.N, Direction.E, Direction.S, Direction.W]

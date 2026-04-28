@@ -86,7 +86,13 @@ def saveWorld(scene: World, path: str) -> None:
     ]
 
     with open(path, "w", encoding="utf-8") as f:
-        json.dump(entities, f, indent=2)
+        json.dump(
+            {
+                "entities": entities,
+            },
+            f,
+            indent=2,
+        )
 
 
 LOAD_PRIORITY: dict[str, int] = {
@@ -102,10 +108,11 @@ LOAD_PRIORITY: dict[str, int] = {
 
 def loadWorld(world: World, path: str) -> None:
     with open(path, "r", encoding="utf-8") as f:
-        entities = json.load(f)
+        world_data = json.load(f)
 
     world.clear()
 
+    entities = world_data["entities"]
     entities.sort(key=lambda i: LOAD_PRIORITY.get(i["type"], 100))
 
     for item in entities:
