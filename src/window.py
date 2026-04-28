@@ -1,13 +1,11 @@
 import random
 
 from PySide6.QtCore import QPoint, Qt, QTimer, Slot
-from PySide6.QtGui import QPainter
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
     QFileDialog,
     QGraphicsView,
-    QHeaderView,
     QLabel,
     QMainWindow,
     QPushButton,
@@ -16,6 +14,7 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
+from src.arduino import arduino
 from src.database import eventDb
 from src.entities import BaseEntity, Car, TrafficLight
 from src.panels import ControlPanel, PropertiesPanel
@@ -43,7 +42,7 @@ class MainWindow(QMainWindow):
         self.spawnTimer.setSingleShot(True)
         self.spawnTimer.timeout.connect(self.onSpawnTimerTimeout)
 
-        eventDb.log("Application startup")
+        eventDb.log(f"Application startup, arduino: {arduino.port or 'Not Connected'}")
 
     def setupWindow(self) -> None:
         self.setWindowTitle("Traffic Simulator")

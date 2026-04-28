@@ -234,13 +234,13 @@ class TrafficLight(BaseEntity):
         self.elapsed = 0
 
     def tick(self, dt: float) -> None:
-        if self.state == TLState.YELLOW:
-            return
-
-        if self.mode == TLMode.TIME:
-            self.tickTime(dt)
-        elif self.mode == TLMode.TRANSPORT:
-            self.tickTransport()
+        match self.mode:
+            case TLMode.TIME:
+                self.tickTime(dt)
+            case TLMode.TRANSPORT:
+                self.tickTransport()
+            case TLMode.ALARM:
+                self.tickAlarm()
 
     def tickTime(self, dt: float) -> None:
         self.elapsed += dt
@@ -261,6 +261,9 @@ class TrafficLight(BaseEntity):
         if self.state != target:
             self.state = target
             self.elapsed = 0
+
+    def tickAlarm(self) -> None:
+        self.state = TLState.YELLOW
 
     def validatePlacement(self, cell: QPoint, world: "World") -> bool:
         straightRoads = world.get(cell, StraightRoad)

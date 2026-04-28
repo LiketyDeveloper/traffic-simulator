@@ -29,6 +29,7 @@ class TLState(Enum):
 class TLMode(Enum):
     TIME = 0
     TRANSPORT = 1
+    ALARM = 2
 
 
 class SignType(Enum):

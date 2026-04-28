@@ -4,7 +4,6 @@ from PySide6.QtCore import QPoint
 
 from src.types import Direction
 
-
 SRC_PATH = Path(__file__).parent
 BASE_PATH = SRC_PATH.parent
 MEDIA_PATH = BASE_PATH / "media"

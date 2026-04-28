@@ -1,14 +1,13 @@
-from functools import lru_cache
 import random
+from functools import lru_cache
 
 from PySide6.QtCore import QObject, QPoint, QRectF, QTimer, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
 from src.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
-from src.utils import expandCrossroadPaths, scenePosToCell
-
 from src.entities import BaseEntity, CrossRoad, Road, StraightRoad
+from src.utils import expandCrossroadPaths, scenePosToCell
 
 
 class World(QGraphicsScene):
@@ -81,7 +80,9 @@ class World(QGraphicsScene):
             if isinstance(entity, BaseEntity):
                 entity.tick(self.simTimer.interval() / 1000)
 
-    def generateRandomPath(self, start: StraightRoad, maxLength: int = 60) -> list[Road]:
+    def generateRandomPath(
+        self, start: StraightRoad, maxLength: int = 60
+    ) -> list[Road]:
         path: list[Road] = [start]
         current = start
 
