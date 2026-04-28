@@ -9,4 +9,4 @@ wheels/
 # Virtual environments
 .venv
 
-/events.db
+events.db

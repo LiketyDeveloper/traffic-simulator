@@ -17,7 +17,6 @@ class ArduinoSerial:
     def port(self) -> str | None:
         return self.ser.port if self.ser else None
 
-
     def findArduinoPort(self) -> str | None:
         ports = serial.tools.list_ports.comports()
 
@@ -29,7 +28,7 @@ class ArduinoSerial:
     def connect(self) -> serial.Serial | None:
         port = self.findArduinoPort()
 
-        try: 
+        try:
             return serial.Serial(port, self.baudrate, 1)
         except Exception:
             pass
@@ -63,5 +62,6 @@ class ArduinoSerial:
 
             except Exception:
                 self.stop()
+
 
 arduino = ArduinoSerial()
