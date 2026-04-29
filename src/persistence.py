@@ -108,4 +108,4 @@ def loadWorld(world: World, path: str) -> None:
     for entity in entities:
         world.addItem(deserializeEntity(entity))
 
-    eventDb.log(f"Saved f{len(entities)} entities to {path!r}")
+    eventDb.log(f"Loaded {len(entities)} entities to {path!r}")
