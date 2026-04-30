@@ -55,7 +55,31 @@
         self.propertiesPanel = PropertiesPanel()
         self.addDockWidget(
             Qt.DockWidgetArea.RightDockWidgetArea,
-            'self.propertiesPanel
+            self.propertiesPanel
         )
     ```
 ] <code:setupLayout>
+
+=== Сохранение и загрузка
+
+Методы `save` и `load` (листинг 6) открывают диалог выбора файла и вызывают
+утилиты `saveWorld` / `loadWorld`, которые сериализуют состояние сцены в JSON и
+восстанавливают его оттуда.
+
+#figure(caption: [Методы сохранения и загрузки])[
+    ```Python
+    def save(self):
+        path, _ = QFileDialog.getSaveFileName(
+            self, "Сохранить", "", "JSON (*.json)"
+        )
+        if path:
+            saveWorld(self.world, path)
+
+    def load(self):
+        path, _ = QFileDialog.getOpenFileName(
+            self, "", "Загрузить", "JSON (*.json)"
+        )
+        if path:
+            loadWorld(self.world, path)
+    ```
+] <code:saveLoad>

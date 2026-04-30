@@ -1,4 +1,3 @@
-#import "constants.typ": color
 #import "conf.typ": template
 
 #show: template

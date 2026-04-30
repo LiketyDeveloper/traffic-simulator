@@ -7,3 +7,4 @@
 #include "steps/consts&utils.typ"
 #include "steps/world.typ"
 #include "steps/entity.typ"
+#include "steps/persistence.typ"

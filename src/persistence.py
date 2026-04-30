@@ -72,28 +72,13 @@ def deserializeEntity(entityData: dict[str, Any]) -> BaseEntity:
     return obj
 
 
-def saveWorld(scene: World, path: str) -> None:
-    entities = [
-        serializeEntity(entity)
-        for entity in scene.items()
-        if isinstance(entity, BaseEntity)
-    ]
+def saveWorld(world: World, path: str) -> None:
+    entities = [serializeEntity(entity) for entity in world.entities()]
 
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"entities": entities}, f, indent=2)
 
     eventDb.log(f"Saved {len(entities)} entities to {path!r}")
-
-
-LOAD_PRIORITY: dict[str, int] = {
-    "StraightRoad": 0,
-    "CrossRoad": 0,
-    "Crossing": 1,
-    "TrafficLight": 2,
-    "Sign": 3,
-    "Pedestrian": 4,
-    "Car": 5,
-}
 
 
 def loadWorld(world: World, path: str) -> None:
@@ -103,7 +88,6 @@ def loadWorld(world: World, path: str) -> None:
     world.clear()
 
     entities = worldData["entities"]
-    entities.sort(key=lambda i: LOAD_PRIORITY.get(i["type"], 100))
 
     for entity in entities:
         world.addItem(deserializeEntity(entity))

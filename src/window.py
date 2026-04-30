@@ -100,6 +100,8 @@ class MainWindow(QMainWindow):
         if not isinstance(entity, BaseEntity):
             entity = None
 
+        print(entity.zValue())
+
         self.propertiesPanel.selectedEntity = entity
 
     @Slot(object)

@@ -27,7 +27,7 @@ if TYPE_CHECKING:
 
 
 class BaseEntity(QGraphicsPixmapItem):
-    def __init__(self, z_index: int = 0, movable: bool = True) -> None:
+    def __init__(self, zIndex: int = 0, movable: bool = True) -> None:
         super().__init__()
 
         flags = QGraphicsItem.GraphicsItemFlag.ItemIsSelectable
@@ -35,7 +35,7 @@ class BaseEntity(QGraphicsPixmapItem):
             flags |= QGraphicsItem.GraphicsItemFlag.ItemIsMovable
         self.setFlags(flags)
 
-        self.setZValue(z_index)
+        self.setZValue(zIndex)
         self.cell = scenePosToCell(self.pos())
 
     @property
@@ -294,7 +294,7 @@ class Crossing(BaseEntity):
     }
 
     def __init__(self, orientation: Orientation = Orientation.VERTICAL) -> None:
-        super().__init__()
+        super().__init__(ZIndexes.Crossing)
 
         self.orientation = orientation
 

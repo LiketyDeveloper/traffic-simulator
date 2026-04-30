@@ -1,5 +1,3 @@
-#import "constants.typ": color
-
 #let template(body) = {
     set document(
         author: "Иван Скребцов",
@@ -8,20 +6,20 @@
     set page(
         paper: "a4",
         header: context {
-            set text(size: 10pt, fill: color.grey)
+            set text(size: 10pt, fill: luma(40))
             set par(spacing: 0.5em, first-line-indent: 0cm)
 
             [Методическое пособие]
             h(1fr)
             counter(page).display("1")
-            line(length: 100%, stroke: color.grey + 0.3pt)
+            line(length: 100%, stroke: luma(40) + 0.3pt)
         },
         footer: {
             set par(spacing: 0.5em, first-line-indent: 0cm)
-            set text(size: 10pt, fill: color.grey)
+            set text(size: 10pt, fill: luma(40))
             set align(left)
 
-            line(length: 100%, stroke: color.grey + 0.3pt)
+            line(length: 100%, stroke: luma(40) + 0.3pt)
             [Специальность 09.02.08 — Интеллектуальные Интегрированные Системы]
         },
     )
@@ -87,7 +85,7 @@
             #set align(left)
             #set text(font: "Courier New")
             #body
-            #align(right)[#body.lang]
+            #text(size: 8pt)[#align(right)[#body.lang]]
         ]
     }
 

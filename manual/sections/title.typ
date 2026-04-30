@@ -1,5 +1,3 @@
-#import "../constants.typ": color, spacing
-
 #let signField() = {
     set text(size: 8pt, fill: gray)
     grid(
@@ -22,20 +20,20 @@
 *«Академия Инженерных Технологий и Управления»*
 #line(length: 100%, stroke: 0.3pt)
 
-#block(above: spacing.xl)[
+#block(above: 48pt)[
     #text(size: 18pt)[*МЕТОДИЧЕСКОЕ ПОСОБИЕ*]
 
     по выполнению практического задания
 ]
 
-#block(above: spacing.lg, width: 60%)[
+#block(above: 48pt, width: 60%)[
     #set text(weight: "bold")
     Модуль 1.
 
     Участие в проектировании архитектуры интеллектуальных интегрированных систем
 ]
 
-#block(above: spacing.lg, width: 60%)[
+#block(above: 36pt, width: 60%)[
     Специальность: 09.02.08
 
     Интеллектуальные интегрированные системы
@@ -43,7 +41,7 @@
     Форма обучения: очная
 ]
 
-#block(above: spacing.xxl)[
+#block(above: 64pt)[
     #set align(left);
     #columns(2)[
         *Составлено:*

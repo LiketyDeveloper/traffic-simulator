@@ -40,10 +40,12 @@
 
 === Обработка нажатия по сцене
 
-При клике на сцене `mousePressEvent` (@code:mouseHandler) преобразует координаты
-события в клетку с помощью `scenePosToCell` и испускает сигнал
-`onWorldCellClicked`, который обрабатывается в `MainWindow`. #figure(
-    caption: [Обработчик нажатия мыши],
+При клике на сцене `mousePressEvent` (@code:mousePressEvent) преобразует
+координаты события в клетку с помощью `scenePosToCell` и испускает сигнал
+`onWorldCellClicked`, который обрабатывается в `MainWindow`.
+
+#figure(
+    caption: [Метод `mousePressEvent`],
 )[
     ```Python
     def mousePressEvent(
@@ -53,14 +55,14 @@
         self.onWorldCellClicked.emit(cell)
         return super().mousePressEvent(event)
     ```
-] <code:mouseHandler>
+] <code:mousePressEvent>
 
 === Отрисовка сетки
 
-`drawBackground` (@code:gridPaint) рисует сетку: сначала заливает фон, затем
-линиями размечает клетки с шагом `CELL_SIZE` в пределах видимой области.
+`drawBackground` (@code:drawBackground) рисует сетку: сначала заливает фон,
+затем линиями размечает клетки с шагом `CELL_SIZE` в пределах видимой области.
 
-#figure(caption: [Обработчик нажатия мыши])[
+#figure(caption: [Метод `drawBackground`])[
     ```Python
     def drawBackground(self, painter: QPainter, rect: QRectF) -> None:
         painter.fillRect(rect, self.backgroundColor)
@@ -76,7 +78,7 @@
         for y in range(first_top, bottom, CELL_SIZE):
             painter.drawLine(left, y, right, y)
     ```
-] <code:gridPaint>
+] <code:drawBackground>
 
 === Обновление сущностей по таймеру
 
@@ -84,7 +86,7 @@
 сущностям сцены и для каждой вызывает метод `tick`, передавая ему прошедшее
 время в секундах.
 
-#figure(caption: [Обновление симуляции])[
+#figure(caption: [Метод `onTick`])[
     ```Python
     def onTick(self) -> None:
         for entity in self.entities():

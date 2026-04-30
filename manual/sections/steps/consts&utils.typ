@@ -127,23 +127,3 @@
         ]
     ```
 ] <code:dirUtils>
-
-=== Генерация случайного маршрута
-
-Метод `generateRandomPath` строит маршрут от заданной стартовой дороги длиной не
-более `maxLength` клеток. Алгоритм последовательно движется вперёд, обрабатывая
-два типа дорог: прямые участки и перекрёстки.
-
-
-Маршрут начинается со стартовой дороги. Переменная current хранит текущую
-позицию на траектории (@code:pathGenInit)
-
-#figure(caption: [Функции для работы с направлением])[
-    ```Python
-    def generateRandomPath(
-      self, start: StraightRoad, maxLength: int = 60
-    ) -> list[Road]:
-        path: list[Road] = [start]
-        current = start
-    ```
-] <code:pathGenInit>
