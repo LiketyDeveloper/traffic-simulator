@@ -33,7 +33,9 @@ class World(QGraphicsScene):
         self.simTimer.timeout.connect(self.onTick)
         self.simTimer.start()
 
-    def entities[T: BaseEntity](self, types: type[T] | tuple[type[T]]) -> list[T]:
+    def entities[T: BaseEntity](
+        self, types: type[T] | tuple[type[T]] = BaseEntity
+    ) -> list[T]:
         return [e for e in self.items() if isinstance(e, types)]
 
     def get[T: BaseEntity](
@@ -76,9 +78,8 @@ class World(QGraphicsScene):
             painter.drawLine(left, y, right, y)
 
     def onTick(self) -> None:
-        for entity in self.items():
-            if isinstance(entity, BaseEntity):
-                entity.tick(self.simTimer.interval() / 1000)
+        for entity in self.entities():
+            entity.tick(self.simTimer.interval() / 1000)
 
     def generateRandomPath(
         self, start: StraightRoad, maxLength: int = 60

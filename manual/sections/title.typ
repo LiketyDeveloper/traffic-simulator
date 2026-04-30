@@ -3,8 +3,7 @@
 #let signField() = {
     set text(size: 8pt, fill: gray)
     grid(
-        columns: (1fr, auto, 1fr),
-        rows: (auto, auto),
+        columns: (1fr, auto, 60%),
         column-gutter: 2pt,
 
         [#v(1em)#line(length: 100%, stroke: 0.3pt)],
@@ -16,7 +15,7 @@
 }
 
 #set align(center)
-#set par(spacing: 0.5em)
+#set par(spacing: 0.5em, first-line-indent: 0cm, justify: false)
 
 Государственное бюджетное профессиональное образовательное учреждение
 
@@ -64,5 +63,3 @@
 #v(1fr)
 
 2026
-
-#pagebreak()
