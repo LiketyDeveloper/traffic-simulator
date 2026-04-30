@@ -3,8 +3,7 @@
         author: "Иван Скребцов",
     )
 
-    set page(
-        paper: "a4",
+    set page( paper: "a4",
         header: context {
             set text(size: 10pt, fill: luma(40))
             set par(spacing: 0.5em, first-line-indent: 0cm)
@@ -85,7 +84,7 @@
             #set align(left)
             #set text(font: "Courier New")
             #body
-            #text(size: 8pt)[#align(right)[#body.lang]]
+            // #text(size: 8pt)[#align(right)[#body.lang]]
         ]
     }
 
