@@ -4,14 +4,14 @@ import random
 from typing import TYPE_CHECKING
 
 from PySide6.QtCore import QPoint
-from PySide6.QtGui import QPixmap, QTransform
+from PySide6.QtGui import QPixmap, QTransform, Qt
 from PySide6.QtWidgets import (
     QGraphicsItem,
     QGraphicsPixmapItem,
     QGraphicsSceneMouseEvent,
 )
 
-from src.constants import DIR2OFFSET, DIR2ROT, ZIndexes
+from src.constants import CELL_SIZE, DIR2OFFSET, DIR2ROT, ZIndexes
 from src.database import eventDb
 from src.types import Direction, Orientation, SignType, TLMode, TLState
 from src.utils import (
@@ -44,6 +44,16 @@ class BaseEntity(QGraphicsPixmapItem):
 
     def tick(self, dt: float) -> None:
         pass
+
+    def setPixmap(self, pixmap: QPixmap):
+        super().setPixmap(
+            pixmap.scaled(
+                CELL_SIZE,
+                CELL_SIZE,
+                Qt.AspectRatioMode.KeepAspectRatio,
+                Qt.TransformationMode.SmoothTransformation,
+            )
+        )
 
     def mouseReleaseEvent(self, event: QGraphicsSceneMouseEvent) -> None:
         super().mouseReleaseEvent(event)

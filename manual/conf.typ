@@ -1,24 +1,26 @@
 #let template(body) = {
     set document(
         author: "Иван Скребцов",
+        title: "Методическое пособие"
     )
 
-    set page( paper: "a4",
+    set page(
+        paper: "a4",
         header: context {
-            set text(size: 10pt, fill: luma(40))
+            set text(size: 10pt, fill: gray)
             set par(spacing: 0.5em, first-line-indent: 0cm)
 
             [Методическое пособие]
             h(1fr)
             counter(page).display("1")
-            line(length: 100%, stroke: luma(40) + 0.3pt)
+            line(length: 100%, stroke: gray + 0.3pt)
         },
         footer: {
             set par(spacing: 0.5em, first-line-indent: 0cm)
-            set text(size: 10pt, fill: luma(40))
+            set text(size: 10pt, fill: gray)
             set align(left)
 
-            line(length: 100%, stroke: luma(40) + 0.3pt)
+            line(length: 100%, stroke: gray + 0.3pt)
             [Специальность 09.02.08 — Интеллектуальные Интегрированные Системы]
         },
     )
@@ -32,7 +34,7 @@
 
     set text(
         font: "Times New Roman",
-        size: 12pt,
+        size: 14pt,
         top-edge: "ascender",
         bottom-edge: "descender",
         lang: "ru",
@@ -41,14 +43,16 @@
     // Headings
     set heading(numbering: "1.")
 
-    show heading: set text(size: 12pt)
+    show heading: set text(size: 14pt)
+    show heading: block.with(above: 12pt, below: 6pt)
     show heading.where(level: 1): it => block(width: 100%)[
         #set align(center)
-        #set text(size: 14pt)
         #it
         #v(-1em)
         #line(length: 100%, stroke: color.black + 0.3pt)
     ]
+
+    show table: set text(size: 12pt)
 
     // Outline
     show outline.entry: it => {
@@ -77,6 +81,7 @@
         ]
     }
     show raw.where(block: true): body => {
+        set align(center)
         block(fill: luma(245), radius: 2pt, width: 90%, inset: (
             x: 12pt,
             y: 8pt,
@@ -84,7 +89,6 @@
             #set align(left)
             #set text(font: "Courier New")
             #body
-            // #text(size: 8pt)[#align(right)[#body.lang]]
         ]
     }
 

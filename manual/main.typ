@@ -14,6 +14,16 @@
 )
 
 #pagebreak()
+#include "sections/intro.typ"
 
+#pagebreak()
+#include "sections/environment.typ"
+
+#pagebreak()
 #include "sections/architecture.typ"
+
+#pagebreak()
 #include "sections/steps.typ"
+
+#pagebreak()
+#include "sections/questions.typ"
