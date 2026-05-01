@@ -14,6 +14,7 @@
 
 #set align(center)
 #set par(spacing: 0.5em, first-line-indent: 0cm, justify: false)
+#set text(size: 12pt)
 
 Государственное бюджетное профессиональное образовательное учреждение
 
