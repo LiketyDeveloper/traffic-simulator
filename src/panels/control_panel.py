@@ -104,7 +104,7 @@ class ControlPanel(QDockWidget):
         return groupBox
 
     def createSpawnCarsBtn(self) -> QPushButton:
-        spawnCarsBtn = QPushButton("Тест-рандом")
+        spawnCarsBtn = QPushButton("Случайное появление авто")
 
         spawnCarsBtn.clicked.connect(lambda: self.spawnCarsClicked.emit())
 

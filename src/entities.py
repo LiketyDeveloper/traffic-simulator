@@ -21,6 +21,7 @@ from src.utils import (
     scenePosToCell,
     snapScenePosToCell,
 )
+from src.arduino import arduino
 
 if TYPE_CHECKING:
     from world import World
@@ -221,10 +222,17 @@ class TrafficLight(BaseEntity):
         TLState.RED: "TLred",
     }
 
+    STATE2MSG = {
+        TLState.GREEN: "GREEN",
+        TLState.YELLOW: "YELLOW",
+        TLState.RED: "RED",
+    }
+
     def __init__(self, state: TLState = TLState.RED) -> None:
         super().__init__(ZIndexes.TrafficLight)
 
         self.state = state
+        self.isTracked = False
         self.mode: TLMode = TLMode.TIME
 
     @property
@@ -238,6 +246,18 @@ class TrafficLight(BaseEntity):
 
         pm = QPixmap(getMediaPath(self.STATE2IMG[self.state]))
         self.setPixmap(pm)
+
+        if getattr(self, 'isTracked', False):
+            arduino.send(self.STATE2MSG[self.state])
+
+    @property
+    def isTracked(self) -> bool:
+        return self._isTracked
+    
+    @isTracked.setter
+    def isTracked(self, isTracked: bool):
+        self._isTracked = isTracked
+        arduino.send(self.STATE2MSG[self.state])
 
     def flip(self) -> None:
         self.state = TLState.RED if self.state == TLState.GREEN else TLState.GREEN
