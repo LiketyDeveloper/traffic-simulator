@@ -155,6 +155,9 @@ class MainWindow(QMainWindow):
         if path:
             car = Car(path)
             self.world.addItem(car)
+    
+    def closeEvent(self, event) -> None:
+        arduino.send("")
 
     def save(self):
         path, _ = QFileDialog.getSaveFileName(self, "Сохранить", "", "JSON (*.json)")
