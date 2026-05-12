@@ -1,6 +1,7 @@
 import random
 
 from PySide6.QtCore import QPoint, Qt, QTimer, Slot
+from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import (
     QApplication,
     QDialog,
@@ -20,7 +21,7 @@ from src.entities import BaseEntity, Car, TrafficLight
 from src.panels import ControlPanel, PropertiesPanel
 from src.persistence import loadWorld, saveWorld
 from src.types import EntityFactory, TLMode
-from src.utils import getPrettyTimestamp, scenePosToCell
+from src.utils import getPrettyTimestamp, scenePosToCell, getMediaPath
 from src.world import World
 
 
@@ -42,6 +43,8 @@ class MainWindow(QMainWindow):
         self.spawnTimer.setSingleShot(True)
         self.spawnTimer.timeout.connect(self.onSpawnTimerTimeout)
 
+        self.trackedTl = None
+
         eventDb.log(f"Application startup, arduino: {arduino.port or 'Not Connected'}")
 
     def setupWindow(self) -> None:
@@ -49,6 +52,8 @@ class MainWindow(QMainWindow):
         self.resize(1100, 700)
 
         menu = self.menuBar().addMenu("Файл")
+
+        self.setWindowIcon(QIcon(getMediaPath("TLgreen.ico")))
 
         save_action = menu.addAction("Сохранить")
         load_action = menu.addAction("Загрузить")
@@ -98,9 +103,15 @@ class MainWindow(QMainWindow):
         entity = entities[0] if entities else None
 
         if not isinstance(entity, BaseEntity):
+            arduino.send("")
             entity = None
 
-        print(entity.zValue())
+        if isinstance(entity, TrafficLight):
+            if self.trackedTl is not None:
+                self.trackedTl.isTracked = False
+
+            self.trackedTl = entity
+            self.trackedTl.isTracked = True
 
         self.propertiesPanel.selectedEntity = entity
 

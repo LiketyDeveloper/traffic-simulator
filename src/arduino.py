@@ -6,32 +6,19 @@ import serial.tools.list_ports
 
 
 class ArduinoSerial:
-    def __init__(self, baudrate=9600) -> None:
-        self.baudrate = baudrate
+    def __init__(self, baudrate=9600, port_device: str = 'COM5') -> None:
         self.thread = None
 
-        self.ser = self.connect()
+        try:
+            self.ser = serial.Serial(port_device, baudrate)
+        except:
+            self.ser = None
+            
         self.onMessage: Callable[[str], None] | None = None
 
     @property
     def port(self) -> str | None:
         return self.ser.port if self.ser else None
-
-    def findArduinoPort(self) -> str | None:
-        ports = serial.tools.list_ports.comports()
-
-        for port in ports:
-            return port.device
-
-        return None
-
-    def connect(self) -> serial.Serial | None:
-        port = self.findArduinoPort()
-
-        try:
-            return serial.Serial(port, self.baudrate, 1)
-        except Exception:
-            pass
 
     def start(self):
         self.running = True
