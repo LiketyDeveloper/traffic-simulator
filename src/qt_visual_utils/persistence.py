@@ -4,8 +4,8 @@ from typing import Any, Callable
 
 from PySide6.QtCore import QPoint
 
-from src.database import eventDb
-from src.entities import (
+from qt_visual_utils.database import eventDb
+from qt_visual_utils.entities import (
     BaseEntity,
     Crossing,
     CrossRoad,
@@ -14,8 +14,8 @@ from src.entities import (
     StraightRoad,
     TrafficLight,
 )
-from src.types import Direction, Orientation, SignType
-from src.world import World
+from qt_visual_utils.types import Direction, Orientation, SignType
+from qt_visual_utils.world import World
 
 
 @dataclass

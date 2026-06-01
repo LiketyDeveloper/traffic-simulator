@@ -15,14 +15,14 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
 )
 
-from src.arduino import arduino
-from src.database import eventDb
-from src.entities import BaseEntity, Car, TrafficLight
-from src.panels import ControlPanel, PropertiesPanel
-from src.persistence import loadWorld, saveWorld
-from src.types import EntityFactory, TLMode
-from src.utils import getPrettyTimestamp, scenePosToCell, getMediaPath
-from src.world import World
+from qt_visual_utils.arduino import arduino
+from qt_visual_utils.database import eventDb
+from qt_visual_utils.entities import BaseEntity, Car, TrafficLight
+from qt_visual_utils.panels import ControlPanel, PropertiesPanel
+from qt_visual_utils.persistence import loadWorld, saveWorld
+from qt_visual_utils.types import EntityFactory, TLMode
+from qt_visual_utils.utils import getPrettyTimestamp, scenePosToCell
+from qt_visual_utils.world import World
 
 
 class MainWindow(QMainWindow):

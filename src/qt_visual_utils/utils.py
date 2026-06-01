@@ -3,8 +3,8 @@ from datetime import datetime
 
 from PySide6.QtCore import QPoint, QPointF
 
-from src.constants import CELL_SIZE, CLOCKWISE, DIR2OFFSET, MEDIA_PATH
-from src.types import Direction, TurnType
+from qt_visual_utils.constants import CELL_SIZE, CLOCKWISE, DIR2OFFSET, MEDIA_PATH
+from qt_visual_utils.types import Direction, TurnType
 
 
 def getMediaPath(media_name: str) -> str:

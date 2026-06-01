@@ -11,10 +11,10 @@ from PySide6.QtWidgets import (
     QGraphicsSceneMouseEvent,
 )
 
-from src.constants import CELL_SIZE, DIR2OFFSET, DIR2ROT, ZIndexes
-from src.database import eventDb
-from src.types import Direction, Orientation, SignType, TLMode, TLState
-from src.utils import (
+from qt_visual_utils.constants import CELL_SIZE, DIR2OFFSET, DIR2ROT, ZIndexes
+from qt_visual_utils.database import eventDb
+from qt_visual_utils.types import Direction, Orientation, SignType, TLMode, TLState
+from qt_visual_utils.utils import (
     cellToScenePos,
     getDirectionFromOffset,
     getMediaPath,
@@ -24,7 +24,7 @@ from src.utils import (
 from src.arduino import arduino
 
 if TYPE_CHECKING:
-    from world import World
+    from qt_visual_utils.world import World
 
 
 class BaseEntity(QGraphicsPixmapItem):

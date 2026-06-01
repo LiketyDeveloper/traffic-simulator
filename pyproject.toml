@@ -1,9 +1,16 @@
 [project]
-name = "traffic-simulator"
-version = "0.1.0"
+name = "qt-visual-utils"
+version = "1.0.1"
 description = ""
 requires-python = ">=3.12"
 dependencies = [
     "pyserial>=3.5",
     "pyside6>=6.11.0",
 ]
+
+[project.scripts]
+traffic_simulator = "qt_visual_utils:main"
+
+[build-system]
+requires = ["uv_build>=0.11.7,<0.12.0"]
+build-backend = "uv_build"

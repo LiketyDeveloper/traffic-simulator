@@ -12,9 +12,9 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.database import eventDb
-from src.entities import BaseEntity, Sign, TrafficLight
-from src.types import SignType, TLState
+from qt_visual_utils.database import eventDb
+from qt_visual_utils.entities import BaseEntity, Sign, TrafficLight
+from qt_visual_utils.types import SignType, TLState
 
 
 def enum_editor(enum_type):

@@ -2,7 +2,7 @@ from enum import Enum
 from typing import TYPE_CHECKING, Callable
 
 if TYPE_CHECKING:
-    from src.entities import BaseEntity
+    from qt_visual_utils.entities import BaseEntity
 
 
 type EntityFactory = Callable[[], "BaseEntity"]

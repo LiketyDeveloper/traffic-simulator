@@ -5,9 +5,9 @@ from PySide6.QtCore import QObject, QPoint, QRectF, QTimer, Signal
 from PySide6.QtGui import QColor, QPainter, QPen
 from PySide6.QtWidgets import QGraphicsScene, QGraphicsSceneMouseEvent
 
-from src.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
-from src.entities import BaseEntity, CrossRoad, Road, StraightRoad
-from src.utils import expandCrossroadPaths, scenePosToCell
+from qt_visual_utils.constants import CELL_SIZE, DIR2OFFSET, GRID_DIM
+from qt_visual_utils.entities import BaseEntity, CrossRoad, Road, StraightRoad
+from qt_visual_utils.utils import expandCrossroadPaths, scenePosToCell
 
 
 class World(QGraphicsScene):

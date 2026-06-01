@@ -8,7 +8,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-from src.entities import (
+from qt_visual_utils.entities import (
     Crossing,
     CrossRoad,
     Pedestrian,
@@ -16,7 +16,7 @@ from src.entities import (
     StraightRoad,
     TrafficLight,
 )
-from src.types import EntityFactory, TLMode
+from qt_visual_utils.types import EntityFactory, TLMode
 
 
 class ControlPanel(QDockWidget):
