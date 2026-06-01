@@ -21,7 +21,7 @@ from qt_visual_utils.utils import (
     scenePosToCell,
     snapScenePosToCell,
 )
-from src.arduino import arduino
+from qt_visual_utils.arduino import arduino
 
 if TYPE_CHECKING:
     from qt_visual_utils.world import World

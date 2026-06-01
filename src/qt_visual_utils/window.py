@@ -21,7 +21,7 @@ from qt_visual_utils.entities import BaseEntity, Car, TrafficLight
 from qt_visual_utils.panels import ControlPanel, PropertiesPanel
 from qt_visual_utils.persistence import loadWorld, saveWorld
 from qt_visual_utils.types import EntityFactory, TLMode
-from qt_visual_utils.utils import getPrettyTimestamp, scenePosToCell
+from qt_visual_utils.utils import getPrettyTimestamp, scenePosToCell, getMediaPath
 from qt_visual_utils.world import World
 
 
